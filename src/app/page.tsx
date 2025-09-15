@@ -5,6 +5,7 @@ import MenuDishes from "@/components/Home/menu&dishes";
 import Testimonials from "@/components/Home/testimonials";
 import OurExperts from "@/components/Home/ourExperts";
 import News from "@/components/Home/news";
+import Footer from "@/components/Home/footer";
 
 export default function Home() {
   return (
@@ -29,6 +30,9 @@ export default function Home() {
       </div>
       <div>
         <News />
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );
