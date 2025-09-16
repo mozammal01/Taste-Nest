@@ -17,7 +17,7 @@ export default function Ordering() {
         <div className="flex justify-between items-center p-10 py-20">
           {/* Left Content */}
           <div className="w-[50%]">
-            <p className="text-red-600 font-extrabold mb-5">Best App For Foods Ordering</p>
+            <p className="text-primary font-extrabold mb-5">Best App For Foods Ordering</p>
             <h1 className="text-4xl font-extrabold mb-10">Manage Your Restaurant Anytime! Anywhere!</h1>
             <div className="flex items-center gap-2 my-5">
               <Image src={orderingImg} alt="orderingImg" width={20} height={20} />

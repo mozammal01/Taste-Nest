@@ -9,7 +9,7 @@ export default function Testimonials() {
     <div className="max-w-[1200px] mx-auto my-30 flex justify-between items-end">
       <div className="w-[40%] flex flex-col gap-10 space-y-10">
         <div className="space-y-4">
-          <p className="text-red-600 font-bold text-lg uppercase">Testimonials & Reviews</p>
+          <p className="text-primary font-bold text-lg uppercase">Testimonials & Reviews</p>
           <h1 className="text-5xl font-extrabold">Our Customer Feedback</h1>
         </div>
         <div className="border-6 border-amber-300 rounded-2xl p-10 space-y-4">

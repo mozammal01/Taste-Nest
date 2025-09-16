@@ -20,7 +20,7 @@ export default function Footer() {
       <div className="flex flex-col justify-between items-center max-w-[1200px] mx-auto pt-20">
         <div className="flex justify-between w-full gap-10">
           {/* Left Content */}
-          <div className="flex flex-col gap-4 bg-red-600 h-[330px] w-[400px] rounded-2xl text-white">
+          <div className="flex flex-col gap-4 bg-primary h-[330px] w-[400px] rounded-2xl text-white">
             <Image src={logo} alt="logo" width={200} height={200} />
             <div className="flex flex-col gap-2 ps-10">
               <span className="font-extrabold -mt-5">Tuesday – Saturday: 12:00pm – 23:00pm</span>
@@ -95,7 +95,7 @@ export default function Footer() {
           <div className="flex justify-between items-center  gap-2 py-4 font-extrabold">
             <div>
               <span>
-                <span className="text-red-600 ">©2025TasteNest </span>| All mozammal01 Themes
+                <span className="text-primary ">©2025TasteNest </span>| All mozammal01 Themes
               </span>
             </div>
             <div className="underline">

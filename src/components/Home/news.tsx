@@ -49,7 +49,7 @@ export default function News() {
           <Image className="object-cover opacity-20" src={endSectionImg} alt="endSectionImg" width={1200} height={1200} />
         </div>
         <div className="absolute  top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] space-y-4 text-center">
-          <div className="bg-red-600 rounded-full p-2 w-15 h-15 flex justify-center items-center mx-auto">
+          <div className="bg-primary rounded-full p-2 w-15 h-15 flex justify-center items-center mx-auto">
             <Image src={instaIcon} alt="instaIcon" width={30} height={30} />
           </div>
           <h1 className="text-2xl font-extrabold">Follow @mozammal01</h1>

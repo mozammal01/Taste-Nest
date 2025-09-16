@@ -26,7 +26,7 @@ export default function Dishes() {
               <div className="text-gray-500">
                 <span className="text-lg me-2">$14.85</span>
                 <span className="text-2xl">
-                  <span className="text-red-600">$</span>10.85
+                  <span className="text-primary">$</span>10.85
                 </span>
               </div>
             </div>
@@ -58,7 +58,7 @@ export default function Dishes() {
               <div className="text-gray-500">
                 <span className="text-lg me-2">$21.76</span>
                 <span className="text-2xl">
-                  <span className="text-red-600">$</span>11.76
+                  <span className="text-primary">$</span>11.76
                 </span>
               </div>
             </div>
@@ -78,7 +78,7 @@ export default function Dishes() {
         <div className="border-6 border-amber-300 rounded-2xl p-10 w-[400px] h-[450px] flex flex-col justify-between relative">
           <div className="relative">
             <div className="absolute top-15 left-0">
-              <Image src={backgroundImg} alt="backgroundImg" width={300} height={300}  className="object-cover"/>
+              <Image src={backgroundImg} alt="backgroundImg" width={300} height={300} className="object-cover" />
             </div>
             <div className="absolute top-0 left-0">
               <Image src={coffeeImg} alt="chickenImg" width={300} height={300} className="object-cover" />
@@ -90,7 +90,7 @@ export default function Dishes() {
               <div className="text-gray-500">
                 <span className="text-lg me-2">$21.76</span>
                 <span className="text-2xl">
-                  <span className="text-red-600">$</span>11.76
+                  <span className="text-primary">$</span>11.76
                 </span>
               </div>
             </div>

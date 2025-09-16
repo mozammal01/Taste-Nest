@@ -15,7 +15,7 @@ export default function OurExperts() {
           <Image src={expert1Img} alt="expert1Img" width={500} height={500} />
           <div className="bg-white h-[380px] w-[380px] rounded-full absolute top-80 left-0 broder-gray-500 border-6">
             <div className="flex flex-col gap-4 items-center mt-20">
-              <p className="text-xl font-extrabold text-red-600">Dessert specialist</p>
+              <p className="text-xl font-extrabold text-primary">Dessert specialist</p>
               <p className="text-3xl font-extrabold">Thomas Walim</p>
               <div className="flex gap-3 mt-4">
                 <div className="w-12 h-12 bg-gray-100 rounded-full"></div>
@@ -30,7 +30,7 @@ export default function OurExperts() {
           <Image src={expert2Img} alt="expert2Img" width={500} height={500} />
           <div className="bg-white h-[380px] w-[380px] rounded-full absolute top-80 left-0 broder-gray-500 border-6">
             <div className="flex flex-col gap-4 items-center mt-20">
-              <p className="text-xl font-extrabold text-red-600">Chef Master</p>
+              <p className="text-xl font-extrabold text-primary">Chef Master</p>
               <p className="text-3xl font-extrabold">James Jhonson</p>
               <div className="flex gap-3 mt-4">
                 <div className="w-12 h-12 bg-gray-100 rounded-full"></div>
@@ -45,7 +45,7 @@ export default function OurExperts() {
           <Image src={expert3Img} alt="expert3Img" width={500} height={500} />
           <div className="bg-white h-[380px] w-[380px] rounded-full absolute top-80 left-0 broder-gray-500 border-6">
             <div className="flex flex-col gap-4 items-center mt-20">
-              <p className="text-xl font-extrabold text-red-600">Dessert specialist</p>
+              <p className="text-xl font-extrabold text-primary">Dessert specialist</p>
               <p className="text-3xl font-extrabold">Room Minal</p>
               <div className="flex gap-3 mt-4">
                 <div className="w-12 h-12 bg-gray-100 rounded-full"></div>

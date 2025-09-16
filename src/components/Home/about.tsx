@@ -13,7 +13,7 @@ export default function About() {
       <div className="flex flex-col gap-10">
         <div className="flex justify-between gap-10">
           <div className="flex flex-col gap-4 w-[50%] ">
-            <p className="text-red-600 font-extrabold text-lg uppercase">About the food resturant</p>
+            <p className="text-primary font-extrabold text-lg uppercase">About the food resturant</p>
             <h1 className="text-6xl font-extrabold">New Ground with Dishes to be Enjoyed</h1>
           </div>
           <div className="w-[60%] pl-40">

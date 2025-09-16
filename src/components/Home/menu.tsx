@@ -23,7 +23,7 @@ export default function Menu() {
             <div className="relative">
               <Button variant="orange" size="lgRounded"></Button>
               <div className="absolute flex flex-col items-center justify-center font-extrabold top-7 right-64">
-                <p className="text-3xl text-red-600">$120</p>
+                <p className="text-3xl text-primary">$120</p>
                 <span>person</span>
               </div>
             </div>
@@ -42,7 +42,7 @@ export default function Menu() {
             <div className="relative">
               <Button variant="orange" size="lgRounded"></Button>
               <div className="absolute flex flex-col items-center justify-center font-extrabold top-7 right-64">
-                <p className="text-3xl text-red-600">$120</p>
+                <p className="text-3xl text-primary">$120</p>
                 <span>person</span>
               </div>
             </div>

@@ -7,6 +7,7 @@ import OurExperts from "@/components/Home/ourExperts";
 import News from "@/components/Home/news";
 import Footer from "@/components/Home/footer";
 import Ordering from "@/components/Home/ordering";
+import Categories from "@/components/Home/categories";
 
 export default function Home() {
   return (
@@ -19,6 +20,9 @@ export default function Home() {
       </div>
       <div>
         <About />
+      </div>
+      <div>
+        <Categories />
       </div>
       <div>
         <MenuDishes />
