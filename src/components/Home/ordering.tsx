@@ -16,7 +16,7 @@ export default function Ordering() {
       <div className="max-w-[1200px] mx-auto ">
         <div className="flex justify-between items-center p-10 py-20">
           {/* Left Content */}
-          <div className="w-[50%]">
+          <div className="md:w-[50%] w-full">
             <p className="text-primary font-extrabold mb-5">Best App For Foods Ordering</p>
             <h1 className="text-4xl font-extrabold mb-10">Manage Your Restaurant Anytime! Anywhere!</h1>
             <div className="flex items-center gap-2 my-5">
@@ -43,7 +43,7 @@ export default function Ordering() {
             </div>
           </div>
           {/* Right Content */}
-          <div className="w-full relative">
+          <div className="w-full relative hidden md:block">
             <div className="absolute bottom-35 left-45">
               <Image src={leafImg} alt="leafImg" width={50} height={90} />
             </div>

@@ -6,8 +6,8 @@ import Image from "next/image";
 
 export default function Testimonials() {
   return (
-    <div className="max-w-[1200px] mx-auto my-30 flex justify-between items-end">
-      <div className="w-[40%] flex flex-col gap-10 space-y-10">
+    <div className="md:max-w-[1200px] max-w-[500px] md:mx-auto my-30 md:flex justify-between items-end mx-2">
+      <div className="md:w-[40%] w-full md:flex flex-col gap-10 space-y-10">
         <div className="space-y-4">
           <p className="text-primary font-bold text-lg uppercase">Testimonials & Reviews</p>
           <h1 className="text-5xl font-extrabold">Our Customer Feedback</h1>
@@ -23,7 +23,7 @@ export default function Testimonials() {
           </div>
         </div>
       </div>
-      <div className="w-[60%] ms-30">
+      <div className="md:w-[60%] w-full ms-30 hidden md:block">
         <div className="relative flex justify-between">
           <div className="bg-[#F3274C] w-[290px] h-[290px] rounded-4xl">
             <Image className="object-cover" src={redImg} alt="redImg" width={290} height={290} />

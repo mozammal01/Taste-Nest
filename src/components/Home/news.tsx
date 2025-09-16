@@ -8,17 +8,17 @@ import instaIcon from "../../../public/icons/instaIcon.png";
 export default function News() {
   return (
     <>
-      <div className="max-w-[1200px] mx-auto my-80">
+      <div className="max-w-[400px] md:max-w-[1200px] mx-auto my-20">
         <div className="text-center">
           <h1 className="text-6xl font-extrabold">Recent News</h1>
           <div className=" border-b-8 border-amber-300 pb-4 mx-[450px]"></div>
         </div>
-        <div className="grid grid-cols-2 gap-10 my-20 w-full">
-          <div className="flex gap-10 w-[600px] justify-center items-center">
+        <div className="grid md:grid-cols-2 gap-10 my-20 w-full">
+          <div className="md:flex gap-10 md:w-[600px] w-full justify-center items-center">
             <div className="rounded-2xl">
-              <Image className="rounded-2xl" src={news1Img} alt="news1Img" width={250} height={250} />
+              <Image className="rounded-2xl mx-auto" src={news1Img} alt="news1Img" width={250} height={250} />
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 justify-center items-center my-4">
               <p className="bg-amber-300 p-1 px-3 rounded-xl w-fit font-extrabold">April 7, 2025</p>
               <h1 className="text-2xl font-extrabold">Creamy Chicken Alfredo</h1>
               <div className="flex gap-2 items-center">
@@ -27,11 +27,11 @@ export default function News() {
               </div>
             </div>
           </div>
-          <div className="flex gap-10 w-[600px] justify-center items-center">
+          <div className="md:flex gap-10 md:w-[600px] w-full justify-center items-center">
             <div className="rounded-2xl">
-              <Image className="rounded-2xl" src={news2Img} alt="news2Img" width={250} height={250} />
+              <Image className="rounded-2xl mx-auto" src={news2Img} alt="news2Img" width={250} height={250} />
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 justify-center items-center my-4">
               <p className="bg-amber-300 p-1 px-3 rounded-xl w-fit font-extrabold">April 7, 2025</p>
               <h1 className="text-2xl font-extrabold">Air Fryer Salmon</h1>
               <div className="flex gap-2 items-center">
@@ -44,7 +44,7 @@ export default function News() {
       </div>
 
       {/* End News */}
-      <div className="max-w-[1200px] mx-auto my-80 relative">
+      <div className="max-w-[1200px] mx-auto my-30 relative">
         <div>
           <Image className="object-cover opacity-20" src={endSectionImg} alt="endSectionImg" width={1200} height={1200} />
         </div>

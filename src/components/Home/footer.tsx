@@ -8,7 +8,7 @@ import { Button } from "../ui/button";
 
 export default function Footer() {
   return (
-    <div className="bg-slate-50 relative h-[580px]">
+    <div className="bg-slate-50 relative h-[580px] hidden md:block">
       <div className="flex justify-between items-center">
         <div className="absolute bottom-0 left-0">
           <Image src={footerLeftImg} alt="footerLeftImg" width={200} height={200} />

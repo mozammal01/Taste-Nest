@@ -7,10 +7,10 @@ import icon from "../../../public/icons/bag.png";
 import { Button } from "../ui/button";
 export default function Dishes() {
   return (
-    <div className="max-w-[1200px] mx-auto my-30 text-center">
+    <div className="max-w-[1200px] mx-auto md:my-30 text-center">
       <h1 className="text-6xl font-extrabold">Featured Dishes</h1>
-      <div className=" border-b-8 border-amber-300 pb-4 mx-[450px]"></div>
-      <div className="grid grid-cols-3 justify-center items-center gap-20 my-20">
+      <div className=" border-b-8 border-amber-300 pb-4 md:mx-[450px] mx-auto"></div>
+      <div className="grid md:grid-cols-3  justify-center items-center gap-20 my-20">
         <div className="border-6 border-amber-300 rounded-2xl p-10 w-[400px] h-[450px] flex flex-col justify-between relative">
           <div className="relative">
             <div className="absolute top-15 left-0">

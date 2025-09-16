@@ -9,7 +9,7 @@ export default function MenuDishes() {
   return (
     <div>
       <Menu />
-      <div className="-mb-40 max-w-[1200px] mx-auto mt-40">
+      <div className="md:-mb-40 max-w-[1200px] mx-auto hidden md:block">
         <div className="relative">
           <Image src={backgroundImg} alt="backgroundImg" width={1200} height={300} className="rounded-2xl object-cover h-[300px]" />
           <div className="absolute top-0 left-0 text-white p-10 px-20 flex gap-10 justify-between">

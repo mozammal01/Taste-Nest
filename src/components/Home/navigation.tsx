@@ -16,7 +16,7 @@ import Link from "next/link";
 
 export default function Navigation() {
   return (
-    <div className="flex justify-between items-center max-w-[1500px] mx-auto py-4">
+    <div className="hidden md:flex justify-between items-center max-w-[1500px] mx-auto py-4">
       <div>
         <Image src={logo} alt="logo" width={100} height={100} />
       </div>
@@ -95,7 +95,7 @@ export default function Navigation() {
       <div className="flex gap-6 items-center">
         <div className="relative">
           <Image src={navIcon} alt="navIcon" width={20} height={10} />
-          <span className="text-white font-bold bg-black rounded-full px-2 absolute top-[-13px] right-[-8px] ">0</span>
+          <span className="text-white font-bold bg-black rounded-full px-1 absolute top-[-13px] right-[-14px] ">0</span>
         </div>
         <Button variant="orange" size="lg">
           Contact Us

@@ -10,7 +10,7 @@ export default function OurExperts() {
         <h1 className="text-6xl font-extrabold">Meet Our Experts</h1>
         <div className=" border-b-8 border-amber-300 pb-4 mx-[450px]"></div>
       </div>
-      <div className="grid grid-cols-3 gap-10 my-20 w-full">
+      <div className="grid md:grid-cols-3 md:gap-10 gap-30 my-20 w-full">
         <div className="relative">
           <Image src={expert1Img} alt="expert1Img" width={500} height={500} />
           <div className="bg-white h-[380px] w-[380px] rounded-full absolute top-80 left-0 broder-gray-500 border-6">
