@@ -9,9 +9,9 @@ export default function Dishes() {
   return (
     <div className="max-w-[1200px] mx-auto md:my-30 text-center">
       <h1 className="text-6xl font-extrabold">Featured Dishes</h1>
-      <div className=" border-b-8 border-amber-300 pb-4 md:mx-[450px] mx-auto"></div>
+      <div className=" border-b-8 border-secondary pb-4 md:mx-[450px] mx-auto"></div>
       <div className="grid md:grid-cols-3  justify-center items-center gap-20 my-20">
-        <div className="border-6 border-amber-300 rounded-2xl p-10 w-[400px] h-[450px] flex flex-col justify-between relative">
+        <div className="border-6 border-secondary rounded-2xl p-10 w-[400px] h-[450px] flex flex-col justify-between relative">
           <div className="relative">
             <div className="absolute top-15 left-0">
               <Image src={backgroundImg} alt="backgroundImg" width={300} height={300} />
@@ -30,7 +30,7 @@ export default function Dishes() {
                 </span>
               </div>
             </div>
-            <div className="bg-amber-300 rounded p-4">
+            <div className="bg-secondary rounded p-4">
               <Image src={icon} alt="icon" width={15} height={15} />
             </div>
           </div>
@@ -43,7 +43,7 @@ export default function Dishes() {
         </div>
 
         {/* Pizza */}
-        <div className="border-6 border-amber-300 rounded-2xl p-10 w-[400px] h-[450px] flex flex-col justify-between relative">
+        <div className="border-6 border-secondary rounded-2xl p-10 w-[400px] h-[450px] flex flex-col justify-between relative">
           <div className="relative">
             <div className="absolute top-15 left-0">
               <Image src={backgroundImg} alt="backgroundImg" width={300} height={300} className="object-cover" />
@@ -62,7 +62,7 @@ export default function Dishes() {
                 </span>
               </div>
             </div>
-            <div className="bg-amber-300 rounded p-4">
+            <div className="bg-secondary rounded p-4">
               <Image src={icon} alt="icon" width={15} height={15} />
             </div>
           </div>
@@ -75,7 +75,7 @@ export default function Dishes() {
         </div>
 
         {/* Coffee */}
-        <div className="border-6 border-amber-300 rounded-2xl p-10 w-[400px] h-[450px] flex flex-col justify-between relative">
+        <div className="border-6 border-secondary rounded-2xl p-10 w-[400px] h-[450px] flex flex-col justify-between relative">
           <div className="relative">
             <div className="absolute top-15 left-0">
               <Image src={backgroundImg} alt="backgroundImg" width={300} height={300} className="object-cover" />
@@ -94,7 +94,7 @@ export default function Dishes() {
                 </span>
               </div>
             </div>
-            <div className="bg-amber-300 rounded p-4">
+            <div className="bg-secondary rounded p-4">
               <Image src={icon} alt="icon" width={15} height={15} className="object-cover" />
             </div>
           </div>

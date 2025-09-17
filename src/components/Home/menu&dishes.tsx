@@ -21,12 +21,12 @@ export default function MenuDishes() {
               <p className="text-lg mt-4 font-semibold">Discover our New Menu !</p>
             </div>
             <div className=" mt-10 w-[60%]">
-              <div className="grid grid-cols-4 gap-4 ">
-                <Input className="w-full py-5 rounded bg-white col-span-2 placeholder:font-bold" type="email" placeholder="No of guest" />
-                <Input className="w-full py-5 rounded bg-white placeholder:font-bold" type="email" placeholder="Date" />
-                <Input className="w-full py-5 rounded bg-white placeholder:font-bold" type="email" placeholder="Time" />
-                <Input className="w-full py-5 rounded bg-white col-span-2 placeholder:font-bold" type="email" placeholder="Full Name" />
-                <Input className="w-full py-5 rounded bg-white col-span-2 placeholder:font-bold" type="email" placeholder="Phone Number" />
+              <div className="grid grid-cols-4 gap-4 text-primary font-semibold">
+                <Input className="w-full py-5 rounded bg-white col-span-2 placeholder:font-bold" type="text" placeholder="No of guest" />
+                <Input className="w-full py-5 rounded bg-white placeholder:font-bold" type="number" placeholder="Date" />
+                <Input className="w-full py-5 rounded bg-white placeholder:font-bold" type="number" placeholder="Time" />
+                <Input className="w-full py-5 rounded bg-white col-span-2 placeholder:font-bold" type="text" placeholder="Full Name" />
+                <Input className="w-full py-5 rounded bg-white col-span-2 placeholder:font-bold" type="number" placeholder="Phone Number" />
               </div>
               <div className="mt-7 text-end"><Button variant="orange" size="lg">Submit</Button></div>
             </div>

@@ -8,7 +8,7 @@ export default function OurExperts() {
     <div className="max-w-[1200px] mx-auto my-40">
       <div className="text-center">
         <h1 className="text-6xl font-extrabold">Meet Our Experts</h1>
-        <div className=" border-b-8 border-amber-300 pb-4 mx-[450px]"></div>
+        <div className=" border-b-8 border-secondary pb-4 mx-[450px]"></div>
       </div>
       <div className="grid md:grid-cols-3 md:gap-10 gap-30 my-20 w-full">
         <div className="relative">

@@ -30,7 +30,7 @@ export default function Footer() {
           </div>
           {/* Left Middle Content */}
           <div>
-            <h1 className="font-extrabold border-b-4 border-amber-300 text-xl">About</h1>
+            <h1 className="font-extrabold border-b-4 border-secondary text-xl">About</h1>
             <div className="flex flex-col space-y-3 mt-10">
               <div className="flex items-center gap-2 font-semibold">
                 <Image src={leftArrow} alt="leftArrow" width={10} height={10} />
@@ -52,7 +52,7 @@ export default function Footer() {
           </div>
           {/* Right Middle Content */}
           <div>
-            <h1 className="font-extrabold border-b-4 border-amber-300 text-xl">Menu</h1>
+            <h1 className="font-extrabold border-b-4 border-secondary text-xl">Menu</h1>
             <div className="flex flex-col space-y-3 mt-10">
               <div className="flex items-center gap-2 font-semibold">
                 <Image src={leftArrow} alt="leftArrow" width={10} height={10} />
@@ -78,7 +78,7 @@ export default function Footer() {
           </div>
           {/* Right Content */}
           <div>
-            <h1 className="font-extrabold border-b-4 border-amber-300 text-xl">Newsletter</h1>
+            <h1 className="font-extrabold border-b-4 border-secondary text-xl">Newsletter</h1>
             <div className="flex flex-col space-y-3 mt-10">
               <div className="flex items-center gap-2 font-semibold">
                 <span>Get recent news and updates. </span>
@@ -91,7 +91,7 @@ export default function Footer() {
           </div>
         </div>
         {/* Bottom Content */}
-        <div className="w-full mt-20 border-t-8 border-amber-300">
+        <div className="w-full mt-20 border-t-8 border-secondary">
           <div className="flex justify-between items-center  gap-2 py-4 font-extrabold">
             <div>
               <span>

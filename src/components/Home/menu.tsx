@@ -7,7 +7,7 @@ export default function Menu() {
     <div className="md:max-w-[1200px] max-w-[300px] mx-auto mt-50 md:my-30 text-center">
       <div className="md:mb-20">
         <h1 className="text-6xl font-extrabold">Discover Menu</h1>
-        <div className=" border-b-8 border-amber-300 pb-4 md:mx-[450px] mx-auto"></div>
+        <div className=" border-b-8 border-secondary pb-4 md:mx-[450px] mx-auto"></div>
       </div>
       <div className="flex flex-col md:flex-row justify-center items-center gap-10 mt-20">
         <div className="md:w-[50%] w-full relative">
