@@ -1,39 +1,14 @@
-"use client";
-import { Button } from "../ui/button";
 import redImg from "@/../public/testimonials/redImage.png";
 import coffeeImg from "@/../public/testimonials/coffee.png";
 import strawberryImg from "@/../public/testimonials/strawberry.png";
 import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
-import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
-import { useState, useEffect } from "react";
-import { cn } from "@/lib/utils";
+import Feedback from "../Feedback/Feedback";
+import { Testimonial } from "@/Interfaces/shared-interface";
 
-interface Testimonial {
-  author: string;
-  review: string;
-}
 
-export default function Testimonials() {
-  const [api, setApi] = useState<CarouselApi>();
-  const [selectedIndex, setSelectedIndex] = useState(0);
-
-  useEffect(() => {
-    if (!api) return;
-
-    const onSelect = () => {
-      setSelectedIndex(api.selectedScrollSnap());
-    };
-
-    api.on("select", onSelect);
-    onSelect();
-
-    return () => {
-      api.off("select", onSelect);
-    };
-  }, [api]);
-
-  const testimonials: Testimonial[] = [
+export default function Testimonials({feedbacks}: {feedbacks: Testimonial[]}) {
+ 
+  const testimonials: Testimonial[] = feedbacks || [
     {
       author: "Bratlee Hamint",
       review: "A good restaurant is like a vacation; it transports you, and it becomes a lot more than just about the food.",
@@ -75,40 +50,7 @@ export default function Testimonials() {
           <p className="text-primary font-bold text-lg uppercase">Testimonials & Reviews</p>
           <h1 className="text-5xl font-extrabold">Our Customer Feedback</h1>
         </div>
-        <Carousel
-          setApi={setApi}
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-full max-w-xl mx-auto"
-        >
-          <CarouselContent>
-            {testimonials.map((testimonial, i) => (
-              <CarouselItem key={i}>
-                <Card className="border-2 border-secondary rounded-2xl">
-                  <CardContent className="p-6 h-[200px] flex flex-col justify-between">
-                    <div className="text-start text-gray-600 font-semibold text-xl">{testimonial.review}</div>
-                    <div className="flex justify-between items-center">
-                      <h1 className="text-2xl font-extrabold">{testimonial.author}</h1>
-                      <Button variant="orange" size="smRounded"></Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
-        {/* Pagination dots */}
-        <div className="flex justify-center gap-2 mt-4">
-          {testimonials.map((_, i) => (
-            <button
-              key={i}
-              className={cn("w-3 h-3 rounded-full transition-colors", selectedIndex === i ? "bg-gray-900" : "bg-gray-400")}
-              onClick={() => api?.scrollTo(i)}
-            />
-          ))}
-        </div>
+       <Feedback feedbacks={testimonials} />
       </div>
       <div className="md:w-[50%] w-full ml-28 hidden lg:block">
         <div className="relative flex justify-between">
