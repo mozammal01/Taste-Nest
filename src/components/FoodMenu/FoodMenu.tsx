@@ -2,28 +2,24 @@
 
 import { useState } from "react";
 import Image, { StaticImageData } from "next/image";
-import dessertImg from "../../../public/categories/dessert.png";
-import steakImg from "../../../public/categories/steak.png";
-import coffeeImg from "../../../public/categories/coffee.png";
-import burgerImg from "../../../public/categories/burger.png";
+import dessertImg from "@/../public/categories/dessert.png";
+import steakImg from "@/../public/categories/steak.png";
+import coffeeImg from "@/../public/categories/coffee.png";
+import burgerImg from "@/../public/categories/burger.png";
 import { CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import DessertIcon from "../Icons/DessertIcon";
 import SteakIcon from "../Icons/SteakIcon";
 import CoffeeIcon from "../Icons/CoffeeIcon";
 import BurgerIcon from "../Icons/BurgerIcon";
-import mask from "../../../public/categories/mask.png";
+import mask from "@/../public/categories/mask.png";
 
-const dessertIcon = DessertIcon;
-const steakIcon = SteakIcon;
-const coffeeIcon = CoffeeIcon;
-const burgerIcon = BurgerIcon;
 // Sample data
 const categories = [
-  { id: "dessert", label: "Dessert", icon: dessertIcon },
-  { id: "steak", label: "Steak", icon: steakIcon },
-  { id: "coffee", label: "Coffee", icon: coffeeIcon },
-  { id: "burger", label: "Burger", icon: burgerIcon },
+  { id: "dessert", label: "Dessert", icon: DessertIcon },
+  { id: "steak", label: "Steak", icon: SteakIcon },
+  { id: "coffee", label: "Coffee", icon: CoffeeIcon },
+  { id: "burger", label: "Burger", icon: BurgerIcon },
 ];
 
 const foods: Record<string, { image: StaticImageData; title: string; items: { name: string; description: string; price: string }[] }> = {
@@ -69,7 +65,6 @@ export default function FoodMenu() {
       {/* Category Tabs */}
       <div className="flex flex-col md:flex-row gap-4">
         {categories.map((cat) => {
-          console.log(cat);
           return (
             <div className="relative" key={cat.id}>
               <div
@@ -84,15 +79,31 @@ export default function FoodMenu() {
                 </div>
                 <span className={cn("font-extrabold", active === cat.id ? "" : "text-black")}>{cat.label}</span>
               </div>
-              {active === cat.id && <Image src={mask} alt="mask" width={168} height={40} className="hidden md:block absolute top-[169px] left-3" />}
-              <span onClick={() => setActive(cat.id)} className={cn("font-extrabold cursor-pointer flex items-center gap-2 md:hidden", active === cat.id ? "text-primary" : "text-black")}>{cat.label}</span>
+              {active === cat.id && (
+                <Image
+                  src={mask}
+                  alt="category selection indicator"
+                  width={168}
+                  height={40}
+                  className="hidden md:block absolute top-[169px] left-3"
+                />
+              )}
+              <span
+                onClick={() => setActive(cat.id)}
+                className={cn(
+                  "font-extrabold cursor-pointer flex items-center gap-2 md:hidden",
+                  active === cat.id ? "text-primary" : "text-black"
+                )}
+              >
+                {cat.label}
+              </span>
             </div>
           );
         })}
       </div>
 
       {/* Content */}
-      <div className="flex flex-col md:flex-row items-center w-full md:max-w-4xl rounded-2xl h-[300px] my-10 mt-20">
+      <div className="flex flex-col md:flex-row items-center w-full md:max-w-4xl rounded-2xl min-h-[300px] my-10 mt-20">
         <div className="relative">
           <Image src={foods[active].image} alt={foods[active].title} height={300} width={300} className="object-cover rounded-2xl" />
         </div>

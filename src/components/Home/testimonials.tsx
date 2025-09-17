@@ -1,11 +1,11 @@
 "use client";
 import { Button } from "../ui/button";
-import redImg from "../../../public/testimonials/redImage.png";
-import coffeeImg from "../../../public/testimonials/coffee.png";
-import strawberryImg from "../../../public/testimonials/strawberry.png";
+import redImg from "@/../public/testimonials/redImage.png";
+import coffeeImg from "@/../public/testimonials/coffee.png";
+import strawberryImg from "@/../public/testimonials/strawberry.png";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
@@ -70,7 +70,7 @@ export default function Testimonials() {
 
   return (
     <div className="md:max-w-[1200px] max-w-[500px] md:mx-auto my-20 md:flex justify-between items-end mx-2 px-4">
-      <div className="md:w-[40%] w-full md:flex flex-col gap-10 space-y-10">
+      <div className="lg:w-[40%] w-full md:flex flex-col gap-10 space-y-10">
         <div className="space-y-4">
           <p className="text-primary font-bold text-lg uppercase">Testimonials & Reviews</p>
           <h1 className="text-5xl font-extrabold">Our Customer Feedback</h1>
@@ -86,9 +86,9 @@ export default function Testimonials() {
           <CarouselContent>
             {testimonials.map((testimonial, i) => (
               <CarouselItem key={i}>
-                <Card className="border-4 border-secondary rounded-2xl">
+                <Card className="border-2 border-secondary rounded-2xl">
                   <CardContent className="p-6 h-[200px] flex flex-col justify-between">
-                    <div className="text-start text-gray-600 font-semibold text-xl">"{testimonial.review}"</div>
+                    <div className="text-start text-gray-600 font-semibold text-xl">{testimonial.review}</div>
                     <div className="flex justify-between items-center">
                       <h1 className="text-2xl font-extrabold">{testimonial.author}</h1>
                       <Button variant="orange" size="smRounded"></Button>
@@ -110,16 +110,16 @@ export default function Testimonials() {
           ))}
         </div>
       </div>
-      <div className="md:w-[50%] w-full ml-30 hidden md:block">
+      <div className="md:w-[50%] w-full ml-28 hidden lg:block">
         <div className="relative flex justify-between">
           <div className="bg-[#F3274C] rounded-3xl overflow-hidden">
-            <Image className="object-cover w-full h-full" src={redImg} alt="Red testimonial image" width={290} height={290} />
+            <Image className="object-cover w-full h-full" src={redImg} alt="customer enjoying meal" width={290} height={290} />
           </div>
-          <div className="absolute bottom-60 left-50">
-            <Image src={coffeeImg} alt="Coffee testimonial image" width={290} height={290} className="object-cover rounded-3xl" />
+          <div className="absolute bottom-60 left-48">
+            <Image src={coffeeImg} alt="delicious coffee and pastries" width={290} height={290} className="object-cover rounded-3xl" />
           </div>
           <div className="absolute top-20 left-80">
-            <Image src={strawberryImg} alt="Strawberry testimonial image" width={290} height={290} className="object-cover rounded-3xl" />
+            <Image src={strawberryImg} alt="fresh strawberry dessert" width={290} height={290} className="object-cover rounded-3xl" />
           </div>
         </div>
       </div>

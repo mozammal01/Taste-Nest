@@ -1,27 +1,27 @@
-import footerLeftImg from "../../../public/footer/footer-left.png";
-import footerRightImg from "../../../public/footer/footer-right.png";
+import footerLeftImg from "@/../public/footer/footer-left.png";
+import footerRightImg from "@/../public/footer/footer-right.png";
 import Image from "next/image";
-import logo from "../../../public/logo/logoWhite.png";
-import leftArrow from "../../../public/icons/leftArrow.png";
+import logo from "@/../public/logo/logoWhite.png";
+import leftArrow from "@/../public/icons/leftArrow.png";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 
 export default function Footer() {
   return (
-    <div className="bg-slate-50 relative h-[580px] hidden md:block">
+    <div className="bg-slate-50 relative h-[580px] hidden 2xl:block">
       <div className="flex justify-between items-center">
         <div className="absolute bottom-0 left-0">
-          <Image src={footerLeftImg} alt="footerLeftImg" width={200} height={200} />
+          <Image src={footerLeftImg} alt="decorative footer left image" width={200} height={200} />
         </div>
         <div className="absolute bottom-0 right-0">
-          <Image src={footerRightImg} alt="footerRightImg" width={200} height={200} />
+          <Image src={footerRightImg} alt="decorative footer right image" width={200} height={200} />
         </div>
       </div>
       <div className="flex flex-col justify-between items-center max-w-[1200px] mx-auto pt-20">
         <div className="flex justify-between w-full gap-10">
           {/* Left Content */}
           <div className="flex flex-col gap-4 bg-primary h-[330px] w-[400px] rounded-2xl text-white">
-            <Image src={logo} alt="logo" width={200} height={200} />
+            <Image src={logo} alt="TasteNest restaurant logo" width={200} height={200} />
             <div className="flex flex-col gap-2 ps-10">
               <span className="font-extrabold -mt-5">Tuesday – Saturday: 12:00pm – 23:00pm</span>
               <span className="font-extrabold underline">Closed on Sunday</span>
@@ -33,19 +33,19 @@ export default function Footer() {
             <h1 className="font-extrabold border-b-4 border-secondary text-xl">About</h1>
             <div className="flex flex-col space-y-3 mt-10">
               <div className="flex items-center gap-2 font-semibold">
-                <Image src={leftArrow} alt="leftArrow" width={10} height={10} />
+                <Image src={leftArrow} alt="menu arrow" width={10} height={10} />
                 <span>Fredoke one</span>
               </div>
               <div className="flex items-center gap-2 font-semibold">
-                <Image src={leftArrow} alt="leftArrow" width={10} height={10} />
+                <Image src={leftArrow} alt="menu arrow" width={10} height={10} />
                 <span>Special Dish</span>
               </div>
               <div className="flex items-center gap-2 font-semibold">
-                <Image src={leftArrow} alt="leftArrow" width={10} height={10} />
+                <Image src={leftArrow} alt="menu arrow" width={10} height={10} />
                 <span>Reservation</span>
               </div>
               <div className="flex items-center gap-2 font-semibold">
-                <Image src={leftArrow} alt="leftArrow" width={10} height={10} />
+                <Image src={leftArrow} alt="menu arrow" width={10} height={10} />
                 <span>Contact</span>
               </div>
             </div>
@@ -55,23 +55,23 @@ export default function Footer() {
             <h1 className="font-extrabold border-b-4 border-secondary text-xl">Menu</h1>
             <div className="flex flex-col space-y-3 mt-10">
               <div className="flex items-center gap-2 font-semibold">
-                <Image src={leftArrow} alt="leftArrow" width={10} height={10} />
+                <Image src={leftArrow} alt="menu arrow" width={10} height={10} />
                 <span>Steaks</span>
               </div>
               <div className="flex items-center gap-2 font-semibold">
-                <Image src={leftArrow} alt="leftArrow" width={10} height={10} />
+                <Image src={leftArrow} alt="menu arrow" width={10} height={10} />
                 <span>Burgers</span>
               </div>
               <div className="flex items-center gap-2 font-semibold">
-                <Image src={leftArrow} alt="leftArrow" width={10} height={10} />
+                <Image src={leftArrow} alt="menu arrow" width={10} height={10} />
                 <span>BBQ</span>
               </div>
               <div className="flex items-center gap-2 font-semibold">
-                <Image src={leftArrow} alt="leftArrow" width={10} height={10} />
-                <span>Coctails</span>
+                <Image src={leftArrow} alt="menu arrow" width={10} height={10} />
+                <span>Cocktails</span>
               </div>
               <div className="flex items-center gap-2 font-semibold">
-                <Image src={leftArrow} alt="leftArrow" width={10} height={10} />
+                <Image src={leftArrow} alt="menu arrow" width={10} height={10} />
                 <span>Desserts</span>
               </div>
             </div>
@@ -92,10 +92,10 @@ export default function Footer() {
         </div>
         {/* Bottom Content */}
         <div className="w-full mt-20 border-t-8 border-secondary">
-          <div className="flex justify-between items-center  gap-2 py-4 font-extrabold">
+          <div className="flex justify-between items-center gap-2 py-4 font-extrabold">
             <div>
               <span>
-                <span className="text-primary ">©2025TasteNest </span>| All mozammal01 Themes
+                <span className="text-primary">©2025 TasteNest</span> | All mozammal01 Themes
               </span>
             </div>
             <div className="underline">

@@ -16,8 +16,8 @@ import Link from "next/link";
 
 export default function Navigation() {
   return (
-    <div className="hidden md:flex justify-between items-center max-w-[1500px] mx-auto py-4">
-      <div>
+    <div className="hidden md:flex justify-between items-center max-w-[1500px] mx-auto py-4 px-4">
+      <div className="hidden lg:block">
         <Image src={logo} alt="logo" width={100} height={100} />
       </div>
       <div className="flex gap-6 items-center">
