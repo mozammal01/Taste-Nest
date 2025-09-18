@@ -4,7 +4,6 @@ import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/com
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Testimonial } from "@/Interfaces/shared-interface";
-import { Button } from "../ui/button";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
@@ -52,7 +51,7 @@ export default function Feedback({ feedbacks }: { feedbacks: Testimonial[] }) {
                   <div className="text-start text-gray-600 font-semibold text-xl">{testimonial.review}</div>
                   <div className="flex justify-between items-center">
                     <h1 className="text-2xl font-extrabold">{testimonial.author}</h1>
-                    <Button variant="orange" size="smRounded"></Button>
+                    <div className="bg-secondary rounded-full h-15 w-15 -mb-4"></div>
                   </div>
                 </CardContent>
               </Card>

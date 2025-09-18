@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import dessertImg from "@/../public/categories/dessert.png";
@@ -78,36 +77,83 @@ export default function FoodMenu() {
               className="relative"
               key={cat.id}
             >
-              <div
+              <motion.div
                 onClick={() => setActive(cat.id)}
                 className={cn(
-                  "hidden md:flex flex-col justify-center items-center gap-2 border shadow-sm rounded-xl transition w-[190px] h-[190px] cursor-pointer p-8",
-                  active === cat.id ? "bg-primary text-white border-primary" : "hover:bg-gray-100 text-primary"
+                  "hidden md:flex flex-col justify-center items-center gap-2 border shadow-sm rounded-xl cursor-pointer p-8 relative overflow-hidden",
+                  "w-[190px] h-[190px]"
                 )}
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
               >
-                <div>
-                  <cat.icon className="size-[70px]" />
-                </div>
-                <span className={cn("font-extrabold", active === cat.id ? "" : "text-black")}>{cat.label}</span>
-              </div>
-              {active === cat.id && (
-                <Image
-                  src={mask}
-                  alt="category selection indicator"
-                  width={168}
-                  height={40}
-                  className="hidden md:block absolute top-[169px] left-3"
+                {/* Background animation */}
+                <motion.div
+                  className="absolute inset-0 bg-primary"
+                  initial={false}
+                  animate={{
+                    opacity: active === cat.id ? 1 : 0,
+                    scale: active === cat.id ? 1 : 0.8,
+                  }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
                 />
+
+                {/* Content */}
+                <motion.div
+                  className="relative z-10"
+                  animate={{
+                    scale: active === cat.id ? 1.1 : 1,
+                  }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <cat.icon
+                    className={cn("size-[70px] transition-colors duration-300", active === cat.id ? "text-white" : "text-primary")}
+                  />
+                </motion.div>
+                <motion.span
+                  className={cn(
+                    "font-extrabold relative z-10 transition-colors duration-300",
+                    active === cat.id ? "text-white" : "text-black"
+                  )}
+                  animate={{
+                    y: active === cat.id ? -2 : 0,
+                  }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {cat.label}
+                </motion.span>
+              </motion.div>
+              {active === cat.id && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8, y: -25 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.8, y: -25 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className="hidden md:block absolute top-[168px] left-3"
+                >
+                  <Image src={mask} alt="category selection indicator" width={168} height={40} />
+                </motion.div>
               )}
-              <span
+              <motion.span
                 onClick={() => setActive(cat.id)}
                 className={cn(
-                  "font-extrabold cursor-pointer flex items-center gap-2 md:hidden",
+                  "font-extrabold cursor-pointer flex items-center gap-2 md:hidden relative",
                   active === cat.id ? "text-primary" : "text-black"
                 )}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.1 }}
               >
                 {cat.label}
-              </span>
+                {active === cat.id && (
+                  <motion.div
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    exit={{ scaleX: 0 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  />
+                )}
+              </motion.span>
             </motion.div>
           );
         })}
@@ -115,29 +161,57 @@ export default function FoodMenu() {
 
       {/* Content */}
       <motion.div
-        ref={ref}
-        initial={{ opacity: 0, x: -100 }}
-        animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -100 }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
+        key={active} // This key ensures the animation triggers when category changes
+        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: -25, scale: 0.95 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
         className="flex flex-col md:flex-row items-center w-full md:max-w-4xl rounded-2xl min-h-[300px] my-10 mt-20"
       >
-        <div className="relative">
+        {/* Food Image with animation */}
+        <motion.div
+          className="relative"
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
           <Image src={foods[active].image} alt={foods[active].title} height={300} width={300} className="object-cover rounded-2xl" />
-        </div>
-        <CardContent className="p-6 md:min-w-[580px] min-w-[300px] md:h-[300px] bg-slate-50 rounded-2xl">
-          <h2 className="text-2xl font-bold mb-4">{foods[active].title}</h2>
-          <ul className="space-y-4">
-            {foods[active].items.map((item, i) => (
-              <li key={i} className="flex justify-between items-start">
-                <div>
-                  <h3 className="font-semibold">{item.name}</h3>
-                  <p className="text-sm text-gray-500">{item.description}</p>
-                </div>
-                <span className="text-red-500 font-semibold">{item.price}</span>
-              </li>
-            ))}
-          </ul>
-        </CardContent>
+        </motion.div>
+
+        {/* Content Card with animation */}
+        <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
+          <CardContent className="p-6 md:min-w-[580px] min-w-[300px] md:h-[300px] bg-slate-50 rounded-2xl">
+            <motion.h2
+              className="text-2xl font-bold mb-4"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
+            >
+              {foods[active].title}
+            </motion.h2>
+            <motion.ul className="space-y-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, delay: 0.4 }}>
+              {foods[active].items.map((item, i) => (
+                <motion.li
+                  key={i}
+                  className="flex justify-between items-start"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{
+                    duration: 0.3,
+                    delay: 0.5 + i * 0.1,
+                    ease: "easeOut",
+                  }}
+                >
+                  <div>
+                    <h3 className="font-semibold">{item.name}</h3>
+                    <p className="text-sm text-gray-500">{item.description}</p>
+                  </div>
+                  <span className="text-red-500 font-semibold">{item.price}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
+          </CardContent>
+        </motion.div>
       </motion.div>
     </div>
   );
