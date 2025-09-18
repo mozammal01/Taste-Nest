@@ -37,11 +37,11 @@ export default function Ordering() {
               <span>Exclusive offers & discounts</span>
             </div>
             <div className="flex gap-2 mt-10">
-              <AnimatedButton variant="bounce" size="lg">
+              <AnimatedButton variant="threeDimensional" size="lg">
                 <Image src={playIcon} alt="Google Play store icon" width={15} height={15} />
                 <span>Google Play</span>
               </AnimatedButton>
-              <AnimatedButton size="lg" variant="bounce">
+              <AnimatedButton size="lg" variant="threeDimensional">
                 <Image src={appleIcon} alt="Apple App Store icon" width={15} height={15} />
                 <span>Apple Store</span>
               </AnimatedButton>
