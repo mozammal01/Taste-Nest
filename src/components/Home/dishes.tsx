@@ -1,10 +1,16 @@
+"use client";
 import Image from "next/image";
 import chickenImg from "@/../public/dishes/chicken.png";
 import pizzaImg from "@/../public/dishes/pizza.png";
 import coffeeImg from "@/../public/dishes/coffee.png";
 import backgroundImg from "@/../public/dishes/Background.png";
 import icon from "@/../public/icons/bag.png";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+
 export default function Dishes() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
   const dishes = [
     {
       id: 1,
@@ -36,9 +42,21 @@ export default function Dishes() {
   ];
   return (
     <div className="max-w-[1200px] mx-auto md:my-28 text-center">
-      <h1 className="text-6xl font-extrabold">Featured Dishes</h1>
+      <motion.h1
+        ref={ref}
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 100 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+        className="text-6xl font-extrabold"
+      >Featured Dishes</motion.h1>
       <div className="border-b-8 border-secondary pb-4 md:mx-[250px] lg:mx-[450px] mx-[120px]"></div>
-      <div className="grid md:grid-cols-2 xl:grid-cols-3 justify-center items-center gap-10 md:gap-20 my-20 px-4">
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 100 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+        className="grid md:grid-cols-2 xl:grid-cols-3 justify-center items-center gap-10 md:gap-20 my-20 px-4"
+      >
         {dishes.map((dish) => (
           <div
             key={dish.id}
@@ -79,7 +97,7 @@ export default function Dishes() {
             </div>
           </div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }

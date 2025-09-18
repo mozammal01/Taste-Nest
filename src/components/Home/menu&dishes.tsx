@@ -4,10 +4,11 @@ import backgroundImg from "@/../public/menu&dishes/full-background.png";
 import Image from "next/image";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { AnimatedButton } from "../ui/animated-button";
 
 export default function MenuDishes() {
   return (
-    <div>
+    <div id="menu">
       <Menu />
       <div className="md:-mb-40 max-w-[1200px] mx-auto hidden md:block px-2">
         <div className="relative">
@@ -35,9 +36,9 @@ export default function MenuDishes() {
                 <Input className="w-full py-5 rounded bg-white col-span-2 placeholder:font-bold" type="number" placeholder="Phone Number" />
               </div>
               <div className="mt-7 text-end">
-                <Button variant="orange" size="lg">
+                <AnimatedButton variant="pulse" size="lg">
                   Submit
-                </Button>
+                </AnimatedButton>
               </div>
             </div>
           </div>

@@ -13,6 +13,8 @@ import SteakIcon from "../Icons/SteakIcon";
 import CoffeeIcon from "../Icons/CoffeeIcon";
 import BurgerIcon from "../Icons/BurgerIcon";
 import mask from "@/../public/categories/mask.png";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 // Sample data
 const categories = [
@@ -58,6 +60,8 @@ const foods: Record<string, { image: StaticImageData; title: string; items: { na
 };
 
 export default function FoodMenu() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
   const [active, setActive] = useState("dessert");
 
   return (
@@ -66,7 +70,14 @@ export default function FoodMenu() {
       <div className="flex flex-col md:flex-row gap-4">
         {categories.map((cat) => {
           return (
-            <div className="relative" key={cat.id}>
+            <motion.div
+              ref={ref}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 100 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="relative"
+              key={cat.id}
+            >
               <div
                 onClick={() => setActive(cat.id)}
                 className={cn(
@@ -97,13 +108,19 @@ export default function FoodMenu() {
               >
                 {cat.label}
               </span>
-            </div>
+            </motion.div>
           );
         })}
       </div>
 
       {/* Content */}
-      <div className="flex flex-col md:flex-row items-center w-full md:max-w-4xl rounded-2xl min-h-[300px] my-10 mt-20">
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, x: -100 }}
+        animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -100 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+        className="flex flex-col md:flex-row items-center w-full md:max-w-4xl rounded-2xl min-h-[300px] my-10 mt-20"
+      >
         <div className="relative">
           <Image src={foods[active].image} alt={foods[active].title} height={300} width={300} className="object-cover rounded-2xl" />
         </div>
@@ -121,7 +138,7 @@ export default function FoodMenu() {
             ))}
           </ul>
         </CardContent>
-      </div>
+      </motion.div>
     </div>
   );
 }

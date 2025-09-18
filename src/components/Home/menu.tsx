@@ -1,15 +1,35 @@
+"use client";
 import Image from "next/image";
 import bbqImg from "@/../public/menu/bbq.png";
 import cocktailImg from "@/../public/menu/coctail.png";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+
 export default function Menu() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
   return (
     <div className="md:max-w-[1200px] max-w-[300px] mx-auto mt-12 md:my-28 text-center">
       <div className="md:mb-20">
-        <h1 className="text-6xl font-extrabold">Discover Menu</h1>
+        <motion.h1
+          ref={ref}
+          initial={{ opacity: 0, y: -100 }}
+          animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : -100 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="text-6xl font-extrabold"
+        >
+          Discover Menu
+        </motion.h1>
         <div className="border-b-8 border-secondary pb-4 md:mx-[250px] lg:mx-[450px] mx-[120px]"></div>
       </div>
       <div className="flex flex-col md:flex-row justify-center items-center gap-20 md:gap-10 my-20 px-4">
-        <div className="w-full relative">
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -100 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="w-full relative"
+        >
           <Image src={bbqImg} alt="steaks and BBQ menu" width={600} height={500} />
           <div className="absolute top-10 left-0 w-full h-full text-white px-10 text-start space-y-4">
             <h1 className="text-3xl md:text-5xl font-extrabold -mt-5">Steaks & BBQ</h1>
@@ -24,8 +44,14 @@ export default function Menu() {
               <span className="text-sm font-extrabold">person</span>
             </div>
           </div>
-        </div>
-        <div className="w-full relative">
+        </motion.div>
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 100 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="w-full relative"
+        >
           <Image src={cocktailImg} alt="cocktails menu" width={600} height={500} />
           <div className="absolute top-10 left-0 w-full h-full text-white px-10 text-start space-y-4">
             <h1 className="text-3xl md:text-5xl font-extrabold -mt-5">Cocktails</h1>
@@ -40,7 +66,7 @@ export default function Menu() {
               <span className="text-sm font-extrabold">person</span>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -1,22 +1,27 @@
+"use client";
 import Image from "next/image";
 import orderingImg from "@/../public/icons/ordering-symbol.png";
 import appleIcon from "@/../public/icons/apple.png";
 import playIcon from "@/../public/icons/play.png";
-import { Button } from "../ui/button";
 import backgroundImg from "@/../public/ordering/bg.png";
 import phoneImg from "@/../public/ordering/mobile.png";
 import bikeImg from "@/../public/ordering/bike.png";
 import leafImg from "@/../public/ordering/leaf.png";
 import pizzaImg from "@/../public/ordering/pizza.png";
 import saladImg from "@/../public/ordering/salad.png";
+import { AnimatedButton } from "../ui/animated-button";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 export default function Ordering() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
   return (
     <div style={{ backgroundImage: `url(${backgroundImg.src})` }} className="bg-cover bg-center mt-80 h-[500px]">
       <div className="max-w-[1200px] mx-auto ">
         <div className="flex justify-between items-center p-10 py-20">
           {/* Left Content */}
-          <div className="md:w-[50%] w-full">
+          <motion.div ref={ref} initial={{ opacity: 0, y: -100 }} animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : -100 }} transition={{ duration: 0.5, ease: "easeInOut" }} className="md:w-[50%] w-full">
             <p className="text-primary font-extrabold mb-5">Best App For Foods Ordering</p>
             <h1 className="text-4xl font-extrabold mb-10">Manage Your Restaurant Anytime! Anywhere!</h1>
             <div className="flex items-center gap-2 my-5">
@@ -32,18 +37,18 @@ export default function Ordering() {
               <span>Exclusive offers & discounts</span>
             </div>
             <div className="flex gap-2 mt-10">
-              <Button variant="red" size="lg">
+              <AnimatedButton variant="bounce" size="lg">
                 <Image src={playIcon} alt="Google Play store icon" width={15} height={15} />
                 <span>Google Play</span>
-              </Button>
-              <Button size="lg">
+              </AnimatedButton>
+              <AnimatedButton size="lg" variant="bounce">
                 <Image src={appleIcon} alt="Apple App Store icon" width={15} height={15} />
                 <span>Apple Store</span>
-              </Button>
+              </AnimatedButton>
             </div>
-          </div>
+          </motion.div>
           {/* Right Content */}
-          <div className="w-full relative hidden 2xl:block">
+          <motion.div ref={ref} initial={{ opacity: 0, y: 100 }} animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 100 }} transition={{ duration: 0.5, ease: "easeInOut" }} className="w-full relative hidden 2xl:block">
             <div className="absolute bottom-32 left-44">
               <Image src={leafImg} alt="decorative leaf" width={50} height={90} />
             </div>
@@ -59,7 +64,7 @@ export default function Ordering() {
             <div className="absolute top-[-80px] right-[-250px]">
               <Image src={saladImg} alt="fresh salad" width={285} height={240} />
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

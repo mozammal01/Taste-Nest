@@ -1,20 +1,33 @@
+"use client";
 import Image from "next/image";
 import news1Img from "@/../public/news/bar.png";
 import news2Img from "@/../public/news/resturent.png";
 import authorImg from "@/../public/about/author.png";
 import endSectionImg from "@/../public/news/end-section.png";
 import instaIcon from "@/../public/icons/instaIcon.png";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 export default function News() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
   return (
     <>
-      <div className="max-w-[400px] md:max-w-[1200px] mx-auto my-20">
+      <div id="news" className="max-w-[400px] md:max-w-[1200px] mx-auto my-40">
         <div className="text-center">
-          <h1 className="text-6xl font-extrabold">Recent News</h1>
+          <motion.h1
+            ref={ref}
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 100 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="text-6xl font-extrabold"
+          >
+            Recent News
+          </motion.h1>
           <div className="border-b-8 border-secondary pb-4 md:mx-[250px] lg:mx-[450px] mx-[120px]"></div>
         </div>
         <div className="grid xl:grid-cols-2 gap-10 my-20 w-full">
-          <div className="md:flex gap-10 md:w-[600px] w-full justify-center items-center">
+          <motion.div ref={ref} initial={{ opacity: 0, x: -100 }} animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -100 }} transition={{ duration: 0.5, ease: "easeInOut" }} className="md:flex gap-10 md:w-[600px] w-full justify-center items-center">
             <div className="rounded-2xl">
               <Image className="rounded-2xl mx-auto" src={news1Img} alt="bar and restaurant news" width={250} height={250} />
             </div>
@@ -26,9 +39,9 @@ export default function News() {
                 <p className="font-extrabold">Willimes James</p>
               </div>
             </div>
-          </div>
+          </motion.div>
           {/*  */}
-          <div className="md:flex gap-10 md:w-[600px] w-full justify-center items-center">
+          <motion.div ref={ref} initial={{ opacity: 0, x: 100 }} animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 100 }} transition={{ duration: 0.5, ease: "easeInOut" }} className="md:flex gap-10 md:w-[600px] w-full justify-center items-center">
             <div className="rounded-2xl">
               <Image className="rounded-2xl mx-auto" src={news2Img} alt="restaurant interior news" width={250} height={250} />
             </div>
@@ -40,7 +53,7 @@ export default function News() {
                 <p className="font-extrabold">Willimes James</p>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 

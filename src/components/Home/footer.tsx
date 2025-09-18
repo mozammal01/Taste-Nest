@@ -5,10 +5,11 @@ import logo from "@/../public/logo/logoWhite.png";
 import leftArrow from "@/../public/icons/leftArrow.png";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { AnimatedButton } from "../ui/animated-button";
 
 export default function Footer() {
   return (
-    <div className="bg-slate-50 relative h-[580px] hidden 2xl:block">
+    <div id="contact" className="bg-slate-50 relative h-[580px] hidden 2xl:block">
       <div className="flex justify-between items-center">
         <div className="absolute bottom-0 left-0">
           <Image src={footerLeftImg} alt="decorative footer left image" width={200} height={200} />
@@ -84,9 +85,9 @@ export default function Footer() {
                 <span>Get recent news and updates. </span>
               </div>
               <Input className="w-full py-5 rounded bg-white placeholder:font-bold px-5" type="email" placeholder="Enter your email" />
-              <Button variant="red" className="w-[100px]">
+              <AnimatedButton variant="slide" className="w-[100px]">
                 Submit
-              </Button>
+              </AnimatedButton>
             </div>
           </div>
         </div>

@@ -1,17 +1,37 @@
+"use client";
 import Image from "next/image";
 import thomasWalim from "@/../public/experts/expert1.png";
 import jamesJohnson from "@/../public/experts/expert2.png";
 import roomMinal from "@/../public/experts/expert3.png";
 import signatureImg from "@/../public/experts/signature.png";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+
 export default function OurExperts() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
   return (
     <div className="max-w-[1200px] mx-auto my-40 px-2">
       <div className="text-center">
-        <h1 className="text-6xl font-extrabold">Meet Our Experts</h1>
+        <motion.h1
+          ref={ref}
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 100 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="text-6xl font-extrabold"
+        >
+          Meet Our Experts
+        </motion.h1>
         <div className="border-b-8 border-secondary pb-4 md:mx-[250px] lg:mx-[450px] mx-[120px]"></div>
       </div>
       <div className="grid md:grid-cols-2 xl:grid-cols-3 lg:gap-10 gap-20 my-20 w-full">
-        <div className="relative">
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -100 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="relative"
+        >
           <Image src={thomasWalim} alt="Thomas Walim - Dessert Specialist" width={500} height={500} />
           <div className="bg-white h-[380px] w-[380px] rounded-full absolute top-80 left-0 border-gray-300 border-4">
             <div className="flex flex-col gap-4 items-center mt-20">
@@ -25,8 +45,14 @@ export default function OurExperts() {
               <Image className="mt-7" src={signatureImg} alt="chef signature" width={130} height={130} />
             </div>
           </div>
-        </div>
-        <div className="relative">
+        </motion.div>
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: -100 }}
+          animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : -100 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="relative"
+        >
           <Image src={jamesJohnson} alt="James Johnson - Chef Master" width={500} height={500} />
           <div className="bg-white h-[380px] w-[380px] rounded-full absolute top-80 left-0 border-gray-300 border-4">
             <div className="flex flex-col gap-4 items-center mt-20">
@@ -40,8 +66,14 @@ export default function OurExperts() {
               <Image className="mt-7" src={signatureImg} alt="chef signature" width={130} height={130} />
             </div>
           </div>
-        </div>
-        <div className="relative md:my-40 lg:my-0">
+        </motion.div>
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 100 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="relative md:my-40 lg:my-0"
+        >
           <Image src={roomMinal} alt="Room Minal - Dessert Specialist" width={500} height={500} />
           <div className="bg-white h-[380px] w-[380px] rounded-full absolute top-80 left-0 border-gray-300 border-4">
             <div className="flex flex-col gap-4 items-center mt-20">
@@ -55,7 +87,7 @@ export default function OurExperts() {
               <Image className="mt-7" src={signatureImg} alt="chef signature" width={130} height={130} />
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
