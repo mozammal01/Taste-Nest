@@ -8,7 +8,7 @@ import { Testimonial } from "@/Interfaces/shared-interface";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-export default function Testimonials({ feedbacks }: { feedbacks: Testimonial[] }) {
+export default function Testimonials({ feedbacks }: { feedbacks?: Testimonial[] }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 

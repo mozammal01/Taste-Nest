@@ -4,7 +4,6 @@ import Image from "next/image";
 import logo from "@/../public/logo/logoWhite.png";
 import leftArrow from "@/../public/icons/leftArrow.png";
 import { Input } from "../ui/input";
-import { Button } from "../ui/button";
 import { AnimatedButton } from "../ui/animated-button";
 
 export default function Footer() {

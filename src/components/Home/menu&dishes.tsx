@@ -3,7 +3,6 @@ import Menu from "./menu";
 import backgroundImg from "@/../public/menu&dishes/full-background.png";
 import Image from "next/image";
 import { Input } from "../ui/input";
-import { Button } from "../ui/button";
 import { AnimatedButton } from "../ui/animated-button";
 
 export default function MenuDishes() {

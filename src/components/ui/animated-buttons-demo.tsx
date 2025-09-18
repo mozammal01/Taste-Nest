@@ -165,7 +165,7 @@ export default function AnimatedButtonsDemo() {
             <h3 className="font-semibold text-gray-700">Menu & Special Offers</h3>
             <div className="space-y-3">
               <AnimatedButton variant="gradientShift" size="lg" className="w-full">
-                🌟 Today's Special
+                🌟 Today&apos;s Special
               </AnimatedButton>
               <AnimatedButton variant="slide" size="lg" className="w-full">
                 📋 View Full Menu
@@ -184,23 +184,23 @@ export default function AnimatedButtonsDemo() {
         <div className="bg-gray-900 text-green-400 p-6 rounded-lg font-mono text-sm overflow-x-auto">
           <div className="space-y-4">
             <div>
-              <p className="text-gray-400">// Import the components</p>
-              <p>import {`{ Button }`} from "@/components/ui/button";</p>
-              <p>import {`{ AnimatedButton }`} from "@/components/ui/animated-button";</p>
+              <p className="text-gray-400">{/* Import the components */}</p>
+              <p>import &#123; Button &#125; from &quot;@/components/ui/button&quot;;</p>
+              <p>import &#123; AnimatedButton &#125; from &quot;@/components/ui/animated-button&quot;;</p>
             </div>
 
             <div>
-              <p className="text-gray-400">// Enhanced button variants</p>
-              <p>&lt;Button variant="bouncy" size="lg"&gt;Order Now&lt;/Button&gt;</p>
-              <p>&lt;Button variant="glow" size="lg"&gt;Reserve Table&lt;/Button&gt;</p>
-              <p>&lt;Button variant="pulse" size="lg"&gt;View Menu&lt;/Button&gt;</p>
+              <p className="text-gray-400">{/* Enhanced button variants */}</p>
+              <p>&lt;Button variant=&quot;bouncy&quot; size=&quot;lg&quot;&gt;Order Now&lt;/Button&gt;</p>
+              <p>&lt;Button variant=&quot;glow&quot; size=&quot;lg&quot;&gt;Reserve Table&lt;/Button&gt;</p>
+              <p>&lt;Button variant=&quot;pulse&quot; size=&quot;lg&quot;&gt;View Menu&lt;/Button&gt;</p>
             </div>
 
             <div>
-              <p className="text-gray-400">// Advanced animated buttons</p>
-              <p>&lt;AnimatedButton variant="bounce"&gt;Bounce Effect&lt;/AnimatedButton&gt;</p>
-              <p>&lt;AnimatedButton variant="slide"&gt;Slide Effect&lt;/AnimatedButton&gt;</p>
-              <p>&lt;AnimatedButton variant="neon"&gt;Neon Effect&lt;/AnimatedButton&gt;</p>
+              <p className="text-gray-400">{/* Advanced animated buttons */}</p>
+              <p>&lt;AnimatedButton variant=&quot;bounce&quot;&gt;Bounce Effect&lt;/AnimatedButton&gt;</p>
+              <p>&lt;AnimatedButton variant=&quot;slide&quot;&gt;Slide Effect&lt;/AnimatedButton&gt;</p>
+              <p>&lt;AnimatedButton variant=&quot;neon&quot;&gt;Neon Effect&lt;/AnimatedButton&gt;</p>
             </div>
           </div>
         </div>
