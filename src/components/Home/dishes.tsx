@@ -1,45 +1,14 @@
 "use client";
 import Image from "next/image";
-import chickenImg from "@/../public/dishes/chicken.png";
-import pizzaImg from "@/../public/dishes/pizza.png";
-import coffeeImg from "@/../public/dishes/coffee.png";
-import backgroundImg from "@/../public/dishes/Background.png";
-import icon from "@/../public/icons/bag.png";
+
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { dishes } from "@/constants/disheshes";
 
 export default function Dishes() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  const dishes = [
-    {
-      id: 1,
-      name: "Crispy Fried Chicken",
-      price: "$14.85",
-      discountPrice: "$10.85",
-      image: chickenImg,
-      backgroundImage: backgroundImg,
-      icon: icon,
-    },
-    {
-      id: 2,
-      name: "Shroom Bacon Burger",
-      price: "$21.76",
-      discountPrice: "$11.76",
-      image: pizzaImg,
-      backgroundImage: backgroundImg,
-      icon: icon,
-    },
-    {
-      id: 3,
-      name: "Delicious Black Coffee",
-      price: "$21.76",
-      discountPrice: "$11.76",
-      image: coffeeImg,
-      backgroundImage: backgroundImg,
-      icon: icon,
-    },
-  ];
+
   return (
     <div className="max-w-[1200px] mx-auto md:my-28 text-center">
       <motion.h1

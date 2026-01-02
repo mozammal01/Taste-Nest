@@ -40,7 +40,7 @@ export default function About() {
             </p>
             <div className="flex gap-4 items-center mt-5">
               <div>
-                <Image src={authorImg} alt="author profile" width={50} height={50} />
+                <Image src="/about/author.png" alt="author profile" width={50} height={50} />
               </div>
               <div className="flex flex-col gap-1">
                 <p className="font-bold text-2xl">Willimes James</p>

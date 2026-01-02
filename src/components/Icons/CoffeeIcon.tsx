@@ -1,8 +1,8 @@
 import { IconProps } from "@/Interfaces/shared-interface";
 
-export default function CoffeeIcon({...props}: IconProps) {
+export default function CoffeeIcon({ size = 24, ...props }: IconProps) {
   return (
-    <svg width={props.size} height={props.size} viewBox="0 0 70 71" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg width={size} height={size} viewBox="0 0 70 71" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path
         d="M8.90632 67.733H18.4378C18.5703 68.5634 19.2585 69.2128 20.1276 69.2128H41.7981C42.6705 69.2128 43.3554 68.5666 43.4879 67.733H53.0194C54.6317 67.733 55.937 66.4277 55.937 64.8154H5.99194C5.99194 66.4277 7.29727 67.733 8.90632 67.733Z"
         fill="currentColor"

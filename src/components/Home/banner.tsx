@@ -21,14 +21,14 @@ export default function Banner() {
       style={{ backgroundImage: `url(${bannerImage.src})` }}
       className="bg-cover bg-center min-h-screen lg:h-[831px]"
     >
-      <div className="flex justify-between items-center py-4 max-w-[1500px] mx-auto">
+      <div className="flex justify-between items-center py-4 container max-sm:px-4 mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 100 }}
           transition={{ duration: 0.5, delay: 0.5, ease: "easeInOut" }}
           className="text-white lg:w-[50%] min-h-screen lg:h-[831px] flex flex-col gap-4 justify-center px-4 lg:px-20 space-y-6"
         >
-          <h1 className="xl:text-6xl lg:text-5xl text-4xl font-bold">The Perfect Space to Enjoy Fantastic Food</h1>
+          <h1 className="xl:text-6xl lg:text-5xl text-4xl font-bold mt-8">The Perfect Space to Enjoy Fantastic Food</h1>
           <p className="text-xl">Festive dining at Farthings where we are strong believers in using the very best produce</p>
           <div className="flex gap-8 justify-start items-center my-8">
             <Link href="#menu">

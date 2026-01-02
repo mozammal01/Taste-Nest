@@ -161,7 +161,7 @@ export default function Navigation() {
               className="p-2 rounded-md hover:bg-gray-100 transition-colors"
               aria-label="Toggle mobile menu"
             >
-              <div className="w-6 h-6 flex flex-col justify-center items-center">
+              <div className="size-6 flex flex-col justify-center items-center">
                 <span
                   className={cn(
                     "block h-0.5 w-6 bg-gray-600 transition-all duration-300",

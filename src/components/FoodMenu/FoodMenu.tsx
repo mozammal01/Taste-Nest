@@ -131,8 +131,11 @@ export default function FoodMenu() {
                   transition={{ duration: 0.3, ease: "easeOut" }}
                   className="hidden md:block absolute top-[168px] left-3"
                 >
-                  <Image src={mask} alt="category selection indicator" width={168} height={40} />
+                <div className="relative">
+                  <Image src={mask} alt={cat.label} width={168} height={40} />
+                </div>
                 </motion.div>
+
               )}
               <motion.span
                 onClick={() => setActive(cat.id)}

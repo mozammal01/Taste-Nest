@@ -8,11 +8,11 @@ import { Testimonial } from "@/Interfaces/shared-interface";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-export default function Testimonials({ feedbacks }: { feedbacks?: Testimonial[] }) {
+export default function Testimonials() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
-  const testimonials: Testimonial[] = feedbacks || [
+  const testimonials: Testimonial[] = [
     {
       author: "Bratlee Hamint",
       review: "A good restaurant is like a vacation; it transports you, and it becomes a lot more than just about the food.",
