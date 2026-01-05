@@ -4,6 +4,7 @@ import bbqImg from "@/../public/menu/bbq.png";
 import cocktailImg from "@/../public/menu/coctail.png";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import SubTitle from "../shared/subTitle";
 
 export default function Menu() {
   const ref = useRef(null);
@@ -11,16 +12,7 @@ export default function Menu() {
   return (
     <div className="md:max-w-[1200px] max-w-[300px] mx-auto mt-12 md:my-28 text-center">
       <div className="md:mb-20">
-        <motion.h1
-          ref={ref}
-          initial={{ opacity: 0, y: -100 }}
-          animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : -100 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="text-6xl font-extrabold"
-        >
-          Discover Menu
-        </motion.h1>
-        <div className="border-b-8 border-secondary pb-4 md:mx-[250px] lg:mx-[450px] mx-[120px]"></div>
+        <SubTitle title="Discover Menu" />
       </div>
       <div className="flex flex-col md:flex-row justify-center items-center gap-20 md:gap-10 my-20 px-4">
         <motion.div

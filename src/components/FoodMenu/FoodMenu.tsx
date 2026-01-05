@@ -164,7 +164,7 @@ export default function FoodMenu() {
 
       {/* Content */}
       <motion.div
-        key={active} // This key ensures the animation triggers when category changes
+        key={active}
         initial={{ opacity: 0, y: 20, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: -25, scale: 0.95 }}

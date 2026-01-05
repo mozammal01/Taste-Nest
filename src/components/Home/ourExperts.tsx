@@ -6,6 +6,7 @@ import roomMinal from "@/../public/experts/expert3.png";
 import signatureImg from "@/../public/experts/signature.png";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import SubTitle from "../shared/subTitle";
 
 export default function OurExperts() {
   const ref = useRef(null);
@@ -13,16 +14,7 @@ export default function OurExperts() {
   return (
     <div className="max-w-[1200px] mx-auto my-40 px-2">
       <div className="text-center">
-        <motion.h1
-          ref={ref}
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 100 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="text-6xl font-extrabold"
-        >
-          Meet Our Experts
-        </motion.h1>
-        <div className="border-b-8 border-secondary pb-4 md:mx-[250px] lg:mx-[450px] mx-[120px]"></div>
+        <SubTitle title="Meet Our Experts" />
       </div>
       <div className="grid md:grid-cols-2 xl:grid-cols-3 lg:gap-10 gap-20 my-20 w-full">
         <motion.div

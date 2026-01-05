@@ -14,7 +14,7 @@ export default function About() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   return (
-    <div className="max-w-[1200px] mx-auto my-30" id="about">
+    <div className="container mx-auto my-30" id="about">
       <div className="flex flex-col gap-10">
         <div className="block lg:flex justify-between gap-10 px-5 lg:px-0">
           <motion.div

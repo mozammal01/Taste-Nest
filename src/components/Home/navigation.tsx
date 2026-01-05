@@ -28,6 +28,15 @@ export default function Navigation() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const navItems = [
+    { label: "Home", href: "#" },
+    { label: "About", href: "#about" },
+    { label: "Shop", href: "#menu" },
+    { label: "Blogs", href: "#blogs" },
+    { label: "Pages", href: "#pages" },
+    { label: "Contact Us", href: "#contact" },
+  ];
+
   return (
     <motion.nav
       ref={ref}
@@ -42,91 +51,11 @@ export default function Navigation() {
           </div>
 
           <div className="flex gap-6 items-center">
-            <div>
-              <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center gap-1 font-semibold hover:text-primary transition-colors">
-                  Home
-                  <Image src={arrowIcon} alt="arrowIcon" width={10} height={10} />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuLabel>Home Pages</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>Home v1</DropdownMenuItem>
-                  <DropdownMenuItem>Home v2</DropdownMenuItem>
-                  <DropdownMenuItem>Home v3</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-            <div>
-              <Link href="#about" className="font-semibold hover:text-primary transition-colors">
-                About
+            {navItems.map((item) => (
+              <Link key={item.label} href={item.href} className="font-semibold hover:text-primary transition-colors">
+                {item.label}
               </Link>
-            </div>
-            <div>
-              <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center gap-1 font-semibold hover:text-primary transition-colors">
-                  Shop
-                  <Image src={arrowIcon} alt="arrowIcon" width={10} height={10} />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuLabel>Shop Categories</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <Link href="#menu" className="w-full">
-                      Food Menu
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>Beverages</DropdownMenuItem>
-                  <DropdownMenuItem>Desserts</DropdownMenuItem>
-                  <DropdownMenuItem>Special Offers</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-            <div>
-              <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center gap-1 font-semibold hover:text-primary transition-colors">
-                  Blogs
-                  <Image src={arrowIcon} alt="arrowIcon" width={10} height={10} />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuLabel>Blog Categories</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>Food Tips</DropdownMenuItem>
-                  <DropdownMenuItem>Recipes</DropdownMenuItem>
-                  <DropdownMenuItem>Restaurant News</DropdownMenuItem>
-                  <DropdownMenuItem>Chef Stories</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-            <div>
-              <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center gap-1 font-semibold hover:text-primary transition-colors">
-                  Pages
-                  <Image src={arrowIcon} alt="arrowIcon" width={10} height={10} />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuLabel>Other Pages</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>Gallery</DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Link href="#testimonials" className="w-full">
-                      Testimonials
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Link href="#news" className="w-full">
-                      News
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>Privacy Policy</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-            <div>
-              <Link href="#contact" className="font-semibold hover:text-primary transition-colors">
-                Contact Us
-              </Link>
-            </div>
+            ))}
           </div>
 
           <div className="flex gap-4 items-center">
@@ -187,86 +116,13 @@ export default function Navigation() {
             isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           )}
         >
-          <div className="py-4 space-y-4 border-t border-gray-200">
-            <div className="space-y-2">
-              <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center justify-between w-full py-2 px-4 text-left font-semibold hover:bg-gray-50 rounded-md">
-                  Home
-                  <Image src={arrowIcon} alt="arrowIcon" width={10} height={10} />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-full">
-                  <DropdownMenuItem>Home v1</DropdownMenuItem>
-                  <DropdownMenuItem>Home v2</DropdownMenuItem>
-                  <DropdownMenuItem>Home v3</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-
-              <Link
-                href="/about-us"
-                className="block py-2 px-4 font-semibold hover:bg-gray-50 rounded-md transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                About Us
-              </Link>
-
-              <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center justify-between w-full py-2 px-4 text-left font-semibold hover:bg-gray-50 rounded-md">
-                  Shop
-                  <Image src={arrowIcon} alt="arrowIcon" width={10} height={10} />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-full">
-                  <DropdownMenuItem>
-                    <Link href="#menu" className="w-full" onClick={() => setIsMobileMenuOpen(false)}>
-                      Food Menu
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>Beverages</DropdownMenuItem>
-                  <DropdownMenuItem>Desserts</DropdownMenuItem>
-                  <DropdownMenuItem>Special Offers</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-
-              <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center justify-between w-full py-2 px-4 text-left font-semibold hover:bg-gray-50 rounded-md">
-                  Blogs
-                  <Image src={arrowIcon} alt="arrowIcon" width={10} height={10} />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-full">
-                  <DropdownMenuItem>Food Tips</DropdownMenuItem>
-                  <DropdownMenuItem>Recipes</DropdownMenuItem>
-                  <DropdownMenuItem>Restaurant News</DropdownMenuItem>
-                  <DropdownMenuItem>Chef Stories</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-
-              <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center justify-between w-full py-2 px-4 text-left font-semibold hover:bg-gray-50 rounded-md">
-                  Pages
-                  <Image src={arrowIcon} alt="arrowIcon" width={10} height={10} />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-full">
-                  <DropdownMenuItem>Gallery</DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Link href="#testimonials" className="w-full" onClick={() => setIsMobileMenuOpen(false)}>
-                      Testimonials
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Link href="#news" className="w-full" onClick={() => setIsMobileMenuOpen(false)}>
-                      News
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>Privacy Policy</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-
-              <Link
-                href="#contact"
-                className="block py-2 px-4 font-semibold hover:bg-gray-50 rounded-md transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Contact Us
-              </Link>
+          <div className="py-4 border-t border-gray-200">
+            <div className="flex flex-col gap-4 mb-4">
+              {navItems.map((item) => (
+                <Link key={item.label} href={item.href} className="font-semibold hover:text-primary transition-colors">
+                  {item.label}
+                </Link>
+              ))}
             </div>
 
             <div className="px-4 pt-4 border-t border-gray-200">
