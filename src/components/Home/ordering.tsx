@@ -55,7 +55,7 @@ export default function Ordering() {
             <div className="absolute top-[-80px] left-28">
               <Image src={bikeImg} alt="delivery bike" width={240} height={240} />
             </div>
-            <div className="absolute top-[-200px] left-96">
+            <div className="absolute top-[-225px] left-96">
               <Image src={phoneImg} alt="mobile app interface" width={400} height={480} />
             </div>
             <div className="absolute bottom-28 right-[-130px]">
