@@ -1,8 +1,7 @@
 "use client";
-import Image from "next/image";
-import thomasWalim from "@/../public/experts/expert1.png";
+import nicholas from "@/../public/experts/expert1.png";
 import jamesJohnson from "@/../public/experts/expert2.png";
-import roomMinal from "@/../public/experts/expert3.png";
+import marcos from "@/../public/experts/expert3.png";
 import signatureImg from "@/../public/experts/signature.png";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -25,8 +24,8 @@ export default function OurExperts() {
           transition={{ duration: 0.5, ease: "easeInOut" }}
           className="relative"
         >
-          <Image src={thomasWalim} alt="Thomas Walim - Dessert Specialist" width={500} height={500} />
-          <ExpertsCircle title="Dessert specialist" name="Thomas Walim" signatureImg={signatureImg.src} />
+          
+          <ExpertsCircle img={nicholas.src} title="Dessert specialist" name="Nicholas" signatureImg={signatureImg.src} />
         </motion.div>
         <motion.div
           ref={ref}
@@ -35,8 +34,7 @@ export default function OurExperts() {
           transition={{ duration: 0.5, ease: "easeInOut" }}
           className="relative"
         >
-          <Image src={jamesJohnson} alt="James Johnson - Chef Master" width={500} height={500} />
-          <ExpertsCircle title="Chef Master" name="James Johnson" signatureImg={signatureImg.src} />
+          <ExpertsCircle img={jamesJohnson.src} title="Chef Master" name="James Johnson" signatureImg={signatureImg.src} />
         </motion.div>
         <motion.div
           ref={ref}
@@ -45,8 +43,7 @@ export default function OurExperts() {
           transition={{ duration: 0.5, ease: "easeInOut" }}
           className="relative md:my-40 lg:my-0"
         >
-          <Image src={roomMinal} alt="Room Minal - Dessert Specialist" width={500} height={500} />
-          <ExpertsCircle title="Dessert specialist" name="Room Minal" signatureImg={signatureImg.src} />
+          <ExpertsCircle img={marcos.src} title="Dessert specialist" name="Marcos" signatureImg={signatureImg.src} />
         </motion.div>
       </div>
     </div>
