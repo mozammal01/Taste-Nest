@@ -21,7 +21,13 @@ export default function Ordering() {
       <div className="max-w-[1200px] mx-auto ">
         <div className="flex justify-between items-center p-10 py-20">
           {/* Left Content */}
-          <motion.div ref={ref} initial={{ opacity: 0, y: -100 }} animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : -100 }} transition={{ duration: 0.5, ease: "easeInOut" }} className="md:w-[50%] w-full">
+          <motion.div
+            ref={ref}
+            initial={{ opacity: 0, y: -100 }}
+            animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : -100 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="md:w-[50%] w-full"
+          >
             <p className="text-primary font-extrabold mb-5">Best App For Foods Ordering</p>
             <h1 className="text-4xl font-extrabold mb-10">Manage Your Restaurant Anytime! Anywhere!</h1>
             <div className="flex items-center gap-2 my-5">
@@ -48,7 +54,13 @@ export default function Ordering() {
             </div>
           </motion.div>
           {/* Right Content */}
-          <motion.div ref={ref} initial={{ opacity: 0, y: 100 }} animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 100 }} transition={{ duration: 0.5, ease: "easeInOut" }} className="w-full relative hidden 2xl:block">
+          <motion.div
+            ref={ref}
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 100 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="w-full relative hidden 2xl:block"
+          >
             <div className="absolute bottom-32 left-44">
               <Image src={leafImg} alt="decorative leaf" width={50} height={90} />
             </div>

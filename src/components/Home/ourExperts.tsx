@@ -7,12 +7,13 @@ import signatureImg from "@/../public/experts/signature.png";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import SubTitle from "../shared/subTitle";
+import ExpertsCircle from "../experts-circle/experts-circle";
 
 export default function OurExperts() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   return (
-    <div className="max-w-[1200px] mx-auto my-40 px-2">
+    <div id="experts" className="container mx-auto my-40 px-2">
       <div className="text-center">
         <SubTitle title="Meet Our Experts" />
       </div>
@@ -25,18 +26,7 @@ export default function OurExperts() {
           className="relative"
         >
           <Image src={thomasWalim} alt="Thomas Walim - Dessert Specialist" width={500} height={500} />
-          <div className="bg-white h-[380px] w-[380px] rounded-full absolute top-80 left-0 border-gray-300 border-4">
-            <div className="flex flex-col gap-4 items-center mt-20">
-              <p className="text-xl font-extrabold text-primary">Dessert specialist</p>
-              <p className="text-3xl font-extrabold">Thomas Walim</p>
-              <div className="flex gap-3 mt-4">
-                <div className="w-12 h-12 bg-gray-100 rounded-full"></div>
-                <div className="w-12 h-12 bg-gray-100 rounded-full"></div>
-                <div className="w-12 h-12 bg-gray-100 rounded-full"></div>
-              </div>
-              <Image className="mt-7" src={signatureImg} alt="chef signature" width={130} height={130} />
-            </div>
-          </div>
+          <ExpertsCircle title="Dessert specialist" name="Thomas Walim" signatureImg={signatureImg.src} />
         </motion.div>
         <motion.div
           ref={ref}
@@ -46,18 +36,7 @@ export default function OurExperts() {
           className="relative"
         >
           <Image src={jamesJohnson} alt="James Johnson - Chef Master" width={500} height={500} />
-          <div className="bg-white h-[380px] w-[380px] rounded-full absolute top-80 left-0 border-gray-300 border-4">
-            <div className="flex flex-col gap-4 items-center mt-20">
-              <p className="text-xl font-extrabold text-primary">Chef Master</p>
-              <p className="text-3xl font-extrabold">James Johnson</p>
-              <div className="flex gap-3 mt-4">
-                <div className="w-12 h-12 bg-gray-100 rounded-full"></div>
-                <div className="w-12 h-12 bg-gray-100 rounded-full"></div>
-                <div className="w-12 h-12 bg-gray-100 rounded-full"></div>
-              </div>
-              <Image className="mt-7" src={signatureImg} alt="chef signature" width={130} height={130} />
-            </div>
-          </div>
+          <ExpertsCircle title="Chef Master" name="James Johnson" signatureImg={signatureImg.src} />
         </motion.div>
         <motion.div
           ref={ref}
@@ -67,18 +46,7 @@ export default function OurExperts() {
           className="relative md:my-40 lg:my-0"
         >
           <Image src={roomMinal} alt="Room Minal - Dessert Specialist" width={500} height={500} />
-          <div className="bg-white h-[380px] w-[380px] rounded-full absolute top-80 left-0 border-gray-300 border-4">
-            <div className="flex flex-col gap-4 items-center mt-20">
-              <p className="text-xl font-extrabold text-primary">Dessert specialist</p>
-              <p className="text-3xl font-extrabold">Room Minal</p>
-              <div className="flex gap-3 mt-4">
-                <div className="w-12 h-12 bg-gray-100 rounded-full"></div>
-                <div className="w-12 h-12 bg-gray-100 rounded-full"></div>
-                <div className="w-12 h-12 bg-gray-100 rounded-full"></div>
-              </div>
-              <Image className="mt-7" src={signatureImg} alt="chef signature" width={130} height={130} />
-            </div>
-          </div>
+          <ExpertsCircle title="Dessert specialist" name="Room Minal" signatureImg={signatureImg.src} />
         </motion.div>
       </div>
     </div>
