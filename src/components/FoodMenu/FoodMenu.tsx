@@ -23,7 +23,7 @@ const categories = [
   { id: "burger", label: "Burger", icon: BurgerIcon },
 ];
 
-const foods: Record<string, { image: StaticImageData; title: string; items: { name: string; description: string; price: string }[] }> = {
+const items: Record<string, { image: StaticImageData; title: string; items: { name: string; description: string; price: string }[] }> = {
   dessert: {
     image: dessertImg,
     title: "Desserts",
@@ -58,13 +58,13 @@ const foods: Record<string, { image: StaticImageData; title: string; items: { na
   },
 };
 
-export default function FoodMenu() {
+export default function PopularMenu() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [active, setActive] = useState("dessert");
 
   return (
-    <div className="w-full flex flex-col items-center gap-6">
+    <div id="menu" className="w-full flex flex-col items-center gap-6">
       {/* Category Tabs */}
       <div className="flex flex-col md:flex-row gap-4">
         {categories.map((cat) => {
@@ -131,11 +131,10 @@ export default function FoodMenu() {
                   transition={{ duration: 0.3, ease: "easeOut" }}
                   className="hidden md:block absolute top-[168px] left-3"
                 >
-                <div className="relative">
-                  <Image src={mask} alt={cat.label} width={168} height={40} />
-                </div>
+                  <div className="relative">
+                    <Image src={mask} alt={cat.label} width={168} height={40} />
+                  </div>
                 </motion.div>
-
               )}
               <motion.span
                 onClick={() => setActive(cat.id)}
@@ -178,7 +177,7 @@ export default function FoodMenu() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <Image src={foods[active].image} alt={foods[active].title} height={300} width={300} className="object-cover rounded-2xl" />
+          <Image src={items[active].image} alt={items[active].title} height={300} width={300} className="object-cover rounded-2xl" />
         </motion.div>
 
         {/* Content Card with animation */}
@@ -190,10 +189,10 @@ export default function FoodMenu() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.3 }}
             >
-              {foods[active].title}
+              {items[active].title}
             </motion.h2>
             <motion.ul className="space-y-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, delay: 0.4 }}>
-              {foods[active].items.map((item, i) => (
+              {items[active].items.map((item, i) => (
                 <motion.li
                   key={i}
                   className="flex justify-between items-start"

@@ -2,17 +2,8 @@
 
 import logo from "../../../public/logo/logo.png";
 import navIcon from "../../../public/icons/navIcon.png";
-import arrowIcon from "../../../public/icons/arrowIcon.png";
 import Image from "next/image";
 import { Button } from "../ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -23,24 +14,29 @@ export default function Navigation() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [active, setActive] = useState("home");
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const handleActive = (id: string) => {
+    setActive(id);
+  };
+
   const navItems = [
-    { label: "Home", href: "#" },
-    { label: "About", href: "#about" },
-    { label: "Shop", href: "#menu" },
-    { label: "Blogs", href: "#blogs" },
-    { label: "Pages", href: "#pages" },
-    { label: "Contact Us", href: "#contact" },
+    { id: "home", label: "Home", href: "#home" },
+    { id: "about", label: "About", href: "#about" },
+    { id: "menu", label: "Shop", href: "#menu" },
+    { id: "blogs", label: "Blogs", href: "#blogs" },
+    { id: "pages", label: "Pages", href: "#pages" },
+    { id: "contact", label: "Contact Us", href: "#contact" },
   ];
 
   return (
     <motion.nav
       ref={ref}
-      className="w-full bg-white shadow-sm sticky top-0 z-50"
+      className="w-full bg-white shadow-sm fixed top-0 left-0 right-0 z-50"
       style={{ opacity: isInView ? 1 : 0, transition: "all 0.5s ease-in-out" }}
     >
       <div className="max-w-[1500px] mx-auto px-4">
@@ -49,10 +45,18 @@ export default function Navigation() {
           <div className="hidden lg:block">
             <Image src={logo} alt="logo" width={100} height={100} />
           </div>
-
-          <div className="flex gap-6 items-center">
+          {/* Desktop Navigation Items */}
+          <div className="flex gap-10 items-center">
             {navItems.map((item) => (
-              <Link key={item.label} href={item.href} className="font-semibold hover:text-primary transition-colors">
+              <Link
+                key={item.label}
+                href={item.href}
+                onClick={() => handleActive(item.id)}
+                className={cn(
+                  "font-semibold hover:text-primary transition-colors",
+                  active === item.id ? "text-primary font-bold border-b-2 border-primary" : "text-black"
+                )}
+              >
                 {item.label}
               </Link>
             ))}
@@ -67,9 +71,6 @@ export default function Navigation() {
               <AnimatedButton variant="gradientShift" size="lg" className="hidden lg:flex cursor-pointer">
                 Contact Us
               </AnimatedButton>
-              {/* <Button variant="pulse" size="lg" className="hidden lg:flex cursor-pointer">
-                Contact Us
-              </Button> */}
             </Link>
           </div>
         </div>
@@ -119,7 +120,15 @@ export default function Navigation() {
           <div className="py-4 border-t border-gray-200">
             <div className="flex flex-col gap-4 mb-4">
               {navItems.map((item) => (
-                <Link key={item.label} href={item.href} className="font-semibold hover:text-primary transition-colors">
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => handleActive(item.id)}
+                  className={cn(
+                    "font-semibold hover:text-primary transition-colors",
+                    active === item.id ? "text-primary font-bold border-b-2 border-primary w-fit" : "text-black"
+                  )}
+                >
                   {item.label}
                 </Link>
               ))}
