@@ -8,11 +8,13 @@ import { motion, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import mask from "@/../public/categories/mask.png";
+import { useRouter } from "next/navigation";
 
 export default function FullMenuCategories() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [active, setActive] = useState("all");
+  const router = useRouter();
   const categories = [
     { id: "all", label: "All", icon: DessertIcon },
     { id: "dessert", label: "Dessert", icon: DessertIcon },
@@ -34,7 +36,10 @@ export default function FullMenuCategories() {
             key={cat.id}
           >
             <motion.div
-              onClick={() => setActive(cat.id)}
+              onClick={() => {
+                setActive(cat.id);
+                router.push(`/menu?category=${cat.id}`);
+              }}
               className={cn(
                 "hidden md:flex flex-col justify-center items-center gap-2 border shadow-sm rounded-xl cursor-pointer p-8 relative overflow-hidden",
                 "w-[190px] h-[190px]"
