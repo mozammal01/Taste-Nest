@@ -1,13 +1,13 @@
-import Navigation from "@/components/Home/navigation";
-import Banner from "@/components/Home/banner";
-import About from "@/components/Home/about";
-import MenuDishes from "@/components/Home/menu&dishes";
-import Testimonials from "@/components/Home/testimonials";
-import OurExperts from "@/components/Home/ourExperts";
-import News from "@/components/Home/news";
-import Footer from "@/components/Home/footer";
-import Ordering from "@/components/Home/ordering";
-import Categories from "@/components/Home/categories";
+import Navigation from "@/components/home/navigation";
+import Banner from "@/components/home/banner";
+import About from "@/components/home/about";
+import MenuDishes from "@/components/home/menu&dishes";
+import Testimonials from "@/components/home/testimonials";
+import OurExperts from "@/components/home/ourExperts";
+import News from "@/components/home/news";
+import Footer from "@/components/home/footer";
+import Ordering from "@/components/home/ordering";
+import Categories from "@/components/home/categories";
 
 export default function Home() {
   return (
