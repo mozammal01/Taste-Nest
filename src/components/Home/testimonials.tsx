@@ -52,7 +52,7 @@ export default function Testimonials() {
       <div className="lg:w-[40%] w-full md:flex flex-col gap-10 space-y-10">
         <div className="space-y-4">
           <p className="text-primary font-bold text-lg uppercase">Testimonials & Reviews</p>
-          <h1 className="text-5xl font-extrabold">Our Customer Feedback</h1>
+          <h2 className="text-5xl font-extrabold">Our Customer Feedback</h2>
         </div>
         <Feedback feedbacks={testimonials} />
       </div>

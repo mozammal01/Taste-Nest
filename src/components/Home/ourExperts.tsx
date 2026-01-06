@@ -24,7 +24,6 @@ export default function OurExperts() {
           transition={{ duration: 0.5, ease: "easeInOut" }}
           className="relative"
         >
-          
           <ExpertsCircle img={nicholas.src} title="Dessert specialist" name="Nicholas" signatureImg={signatureImg.src} />
         </motion.div>
         <motion.div

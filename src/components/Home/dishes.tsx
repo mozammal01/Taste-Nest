@@ -35,7 +35,7 @@ export default function Dishes() {
             </div>
             <div className="font-extrabold text-start flex justify-between items-center">
               <div>
-                <h1 className="text-xl">{dish.name}</h1>
+                <h2 className="text-xl">{dish.name}</h2>
                 <div className="text-gray-500">
                   <span className="text-lg me-2 relative">
                     {dish.price} <hr className="w-16 absolute top-1/2 left-0 -translate-y-1/2" />

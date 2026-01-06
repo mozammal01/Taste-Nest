@@ -24,7 +24,7 @@ export default function Menu() {
         >
           <Image src={bbqImg} alt="steaks and BBQ menu" width={600} height={500} />
           <div className="absolute top-10 left-0 w-full h-full text-white px-10 text-start space-y-4">
-            <h1 className="text-3xl md:text-5xl font-extrabold -mt-5">Steaks & BBQ</h1>
+            <h2 className="text-3xl md:text-5xl font-extrabold -mt-5">Steaks & BBQ</h2>
             <p className="hidden md:block">
               canonical classics to obscure
               <span className="block">tiki drinks</span>
@@ -46,7 +46,7 @@ export default function Menu() {
         >
           <Image src={cocktailImg} alt="cocktails menu" width={600} height={500} />
           <div className="absolute top-10 left-0 w-full h-full text-white px-10 text-start space-y-4">
-            <h1 className="text-3xl md:text-5xl font-extrabold -mt-5">Cocktails</h1>
+            <h2 className="text-3xl md:text-5xl font-extrabold -mt-5">Cocktails</h2>
             <p className="hidden md:block">
               canonical classics to obscure
               <span className="block">tiki drinks</span>

@@ -8,7 +8,7 @@ export default function AnimatedButtonsDemo() {
   return (
     <div className="max-w-6xl mx-auto p-8 space-y-8">
       <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-gray-800">TasteNest Animated Buttons</h1>
+        <h2 className="text-4xl font-bold text-gray-800">TasteNest Animated Buttons</h2>
         <p className="text-gray-600 text-lg">A collection of beautiful animated buttons for your restaurant website</p>
       </div>
 

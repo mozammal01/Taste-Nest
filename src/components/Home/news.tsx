@@ -15,7 +15,7 @@ export default function News() {
     <>
       <div id="news" className="max-w-[400px] md:max-w-[1200px] mx-auto my-40">
         <div className="text-center">
-          <motion.h1
+          <motion.h2
             ref={ref}
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 100 }}
@@ -23,7 +23,7 @@ export default function News() {
             className="text-6xl font-extrabold"
           >
             Recent News
-          </motion.h1>
+          </motion.h2>
           <div className="border-b-8 border-secondary pb-4 md:mx-[250px] lg:mx-[450px] mx-[120px]"></div>
         </div>
         <div className="grid xl:grid-cols-2 gap-10 my-20 w-full">
@@ -33,7 +33,7 @@ export default function News() {
             </div>
             <div className="flex flex-col gap-4 justify-center items-center my-4">
               <p className="bg-secondary p-1 px-3 rounded-xl w-fit font-extrabold">April 7, 2025</p>
-              <h1 className="text-2xl font-extrabold"> Chicken Alfredo</h1>
+              <h2 className="text-2xl font-extrabold"> Chicken Alfredo</h2>
               <div className="flex gap-2 items-center">
                 <Image src={authorImg} alt="author profile" width={50} height={50} />
                 <p className="font-extrabold">Willimes James</p>
@@ -47,7 +47,7 @@ export default function News() {
             </div>
             <div className="flex flex-col gap-4 justify-center items-center my-4">
               <p className="bg-secondary p-1 px-3 rounded-xl w-fit font-extrabold">April 7, 2025</p>
-              <h1 className="text-2xl font-extrabold">Air Fryer Salmon</h1>
+              <h2 className="text-2xl font-extrabold">Air Fryer Salmon</h2>
               <div className="flex gap-2 items-center">
                 <Image src={authorImg} alt="author profile" width={50} height={50} />
                 <p className="font-extrabold">Willimes James</p>
@@ -66,7 +66,7 @@ export default function News() {
           <div className="bg-primary rounded-full p-2 w-16 h-16 flex justify-center items-center mx-auto">
             <Image src={instaIcon} alt="Instagram icon" width={30} height={30} />
           </div>
-          <h1 className="text-2xl font-extrabold">Follow @mozammal01</h1>
+          <h2 className="text-2xl font-extrabold">Follow @mozammal01</h2>
           <p className="font-semibold ">Join our community to inspire your desires</p>
         </div>
       </div>

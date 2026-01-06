@@ -7,7 +7,7 @@ export default function SubTitle({ title }: { title: string }) {
   const isInView = useInView(ref, { once: true });
   return (
     <div className="md:mb-20">
-      <motion.h1
+      <motion.h2
           ref={ref}
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 100 }}
@@ -15,7 +15,7 @@ export default function SubTitle({ title }: { title: string }) {
           className="text-6xl font-extrabold"
         >
           {title}
-        </motion.h1>
+        </motion.h2>
       <div className="border-b-8 border-secondary max-w-xs mx-auto my-4"></div>
     </div>
   );

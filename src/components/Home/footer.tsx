@@ -30,7 +30,7 @@ export default function Footer() {
           </div>
           {/* Left Middle Content */}
           <div>
-            <h1 className="font-extrabold border-b-4 border-secondary text-xl">About</h1>
+            <h2 className="font-extrabold border-b-4 border-secondary text-xl">About</h2>
             <div className="flex flex-col space-y-3 mt-10">
               <div className="flex items-center gap-2 font-semibold">
                 <Image src={leftArrow} alt="menu arrow" width={10} height={10} />
@@ -52,7 +52,7 @@ export default function Footer() {
           </div>
           {/* Right Middle Content */}
           <div>
-            <h1 className="font-extrabold border-b-4 border-secondary text-xl">Menu</h1>
+            <h2 className="font-extrabold border-b-4 border-secondary text-xl">Menu</h2>
             <div className="flex flex-col space-y-3 mt-10">
               <div className="flex items-center gap-2 font-semibold">
                 <Image src={leftArrow} alt="menu arrow" width={10} height={10} />
@@ -78,7 +78,7 @@ export default function Footer() {
           </div>
           {/* Right Content */}
           <div>
-            <h1 className="font-extrabold border-b-4 border-secondary text-xl">Newsletter</h1>
+            <h2 className="font-extrabold border-b-4 border-secondary text-xl">Newsletter</h2>
             <div className="flex flex-col space-y-3 mt-10">
               <div className="flex items-center gap-2 font-semibold">
                 <span>Get recent news and updates. </span>

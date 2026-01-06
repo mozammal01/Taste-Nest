@@ -28,7 +28,7 @@ export default function Banner() {
           transition={{ duration: 0.5, delay: 0.5, ease: "easeInOut" }}
           className="text-white lg:w-[50%] min-h-screen lg:h-[831px] flex flex-col gap-4 justify-center px-4 lg:px-20 space-y-6"
         >
-          <h1 className="xl:text-6xl lg:text-5xl text-4xl font-bold mt-8">The Perfect Space to Enjoy Fantastic Food</h1>
+          <h2 className="xl:text-6xl lg:text-5xl text-4xl font-bold mt-8">The Perfect Space to Enjoy Fantastic Food</h2>
           <p className="text-xl">Festive dining at Farthings where we are strong believers in using the very best produce</p>
           <div className="flex gap-8 justify-start items-center my-8">
             <Link href="#menu">

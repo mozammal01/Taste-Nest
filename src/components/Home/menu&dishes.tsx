@@ -20,10 +20,10 @@ export default function MenuDishes() {
           />
           <div className="absolute top-0 left-0 text-white p-10 px-20 flex gap-10 justify-between">
             <div>
-              <h1 className="text-5xl uppercase font-extrabold">
+              <h2 className="text-5xl uppercase font-extrabold">
                 Reserve
                 <span className="block border-b-8 border-amber-400 pb-4 mt-4">A Table</span>
-              </h1>
+              </h2>
               <p className="text-lg mt-4 font-semibold">Discover our New Menu !</p>
             </div>
             <div className="mt-10 w-[60%]">

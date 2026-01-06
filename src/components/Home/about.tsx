@@ -3,10 +3,10 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import authorImg from "@/../public/about/author.png";
-import restaurantImg from "@/../public/about/resturentImg.png";
-import restaurantBorder from "@/../public/about/resturentBorder.png";
-import cocktailImg from "@/../public/about/coctailImg.png";
-import cocktailBorder from "@/../public/about/coctailBorder.png";
+import restaurantImg from "@/../public/about/restaurantImg.png";
+import restaurantBorder from "@/../public/about/restaurantBorder.png";
+import cocktailImg from "@/../public/about/cocktailImg.png";
+import cocktailBorder from "@/../public/about/cocktailBorder.png";
 import drinkImg from "@/../public/about/drinkImg.png";
 import drinkBorder from "@/../public/about/drinkBorder.png";
 
@@ -25,7 +25,7 @@ export default function About() {
             className="flex flex-col gap-4 lg:w-[50%] space-y-4"
           >
             <p className="text-primary font-extrabold text-lg uppercase">About the food restaurant</p>
-            <h1 className="md:text-6xl text-4xl font-extrabold">New Ground with Dishes to be Enjoyed</h1>
+            <h2 className="md:text-6xl text-4xl font-extrabold">New Ground with Dishes to be Enjoyed</h2>
           </motion.div>
           <motion.div
             ref={ref}
@@ -35,15 +35,16 @@ export default function About() {
             className="lg:w-[60%] lg:pl-40 mt-5 lg:mt-0"
           >
             <p>
-              Nisl quam nestibulum ac quam nec odio eleme aucan ligula. Orci varius nat oque pena tibus et urient monte nascete ridiculus
-              mus nellentesq um ac qu am nec odio rbine. Nisl quam nestibu aucan ligula.
+              Lorem ipsum dolor sit consectetur quod, eum tempore ex a nam ea nostrum vitae. Libero non Lorem ipsum dolor sit consectetur
+              quod, eum tempore ex a nam ea nostrum vitae. Libero non Lorem ipsum dolor sit consectetur quod, eum tempore ex a nam ea
+              nostrum vitae. Libero non
             </p>
             <div className="flex gap-4 items-center mt-5">
               <div>
-                <Image src="/about/author.png" alt="author profile" width={50} height={50} />
+                <Image src={authorImg} alt="author profile" width={50} height={50} />
               </div>
               <div className="flex flex-col gap-1">
-                <p className="font-bold text-2xl">Willimes James</p>
+                <p className="font-bold text-2xl">Williams James</p>
                 <p>Director and Chief Operations Officer</p>
               </div>
             </div>

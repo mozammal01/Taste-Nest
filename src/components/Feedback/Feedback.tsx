@@ -50,7 +50,7 @@ export default function Feedback({ feedbacks }: { feedbacks: Testimonial[] }) {
                 <CardContent className="p-6 h-[200px] flex flex-col justify-between">
                   <div className="text-start text-gray-600 font-semibold text-xl">{testimonial.review}</div>
                   <div className="flex justify-between items-center">
-                    <h1 className="text-2xl font-extrabold">{testimonial.author}</h1>
+                    <h2 className="text-2xl font-extrabold">{testimonial.author}</h2>
                     <div className="bg-secondary rounded-full h-15 w-15 -mb-4"></div>
                   </div>
                 </CardContent>

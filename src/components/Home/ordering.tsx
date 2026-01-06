@@ -29,7 +29,7 @@ export default function Ordering() {
             className="md:w-[50%] w-full"
           >
             <p className="text-primary font-extrabold mb-5">Best App For Foods Ordering</p>
-            <h1 className="text-4xl font-extrabold mb-10">Manage Your Restaurant Anytime! Anywhere!</h1>
+            <h2 className="text-4xl font-extrabold mb-10">Manage Your Restaurant Anytime! Anywhere!</h2>
             <div className="flex items-center gap-2 my-5">
               <Image src={orderingImg} alt="ordering feature icon" width={20} height={20} />
               <span>Higher Reach - Minimal Effort</span>
