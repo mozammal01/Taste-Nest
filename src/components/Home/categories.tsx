@@ -1,4 +1,4 @@
-import PopularMenu from "../FoodMenu/FoodMenu";
+import PopularMenu from "../popularMenu/popularMenu";
 import SubTitle from "../shared/subTitle";
 
 export default function Categories() {

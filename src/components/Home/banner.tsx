@@ -1,9 +1,7 @@
 "use client";
 import bannerImage from "@/../public/banner/bannerImg.png";
-import videoIcon from "@/../public/banner/02.png";
 import pizzaImg from "@/../public/banner/pizza.png";
 import WeeklySpecialCard from "../ui/weekly-special-card";
-import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -36,10 +34,6 @@ export default function Banner() {
                 See our menu
               </AnimatedButton>
             </Link>
-            <div className="flex gap-2 items-center justify-center">
-              <Image src={videoIcon} alt="video icon" width={50} height={50} />
-              <span className="uppercase font-bold text-sm">video</span>
-            </div>
           </div>
         </motion.div>
         <div className="w-[400px] h-[400px] relative top-[200px] lg:block hidden">

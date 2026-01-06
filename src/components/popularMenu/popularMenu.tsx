@@ -7,13 +7,15 @@ import coffeeImg from "@/../public/categories/coffee.png";
 import burgerImg from "@/../public/categories/burger.png";
 import { CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import DessertIcon from "../Icons/DessertIcon";
-import SteakIcon from "../Icons/SteakIcon";
-import CoffeeIcon from "../Icons/CoffeeIcon";
-import BurgerIcon from "../Icons/BurgerIcon";
+import DessertIcon from "../icons/DessertIcon";
+import SteakIcon from "../icons/SteakIcon";
+import CoffeeIcon from "../icons/CoffeeIcon";
+import BurgerIcon from "../icons/BurgerIcon";
 import mask from "@/../public/categories/mask.png";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { AnimatedButton } from "../ui/animated-button";
+import Link from "next/link";
 
 // Sample data
 const categories = [
@@ -67,6 +69,7 @@ export default function PopularMenu() {
     <div id="menu" className="w-full flex flex-col items-center gap-6">
       {/* Category Tabs */}
       <div className="flex flex-col md:flex-row gap-4">
+        {/* Category Tabs */}
         {categories.map((cat) => {
           return (
             <motion.div
@@ -215,6 +218,10 @@ export default function PopularMenu() {
           </CardContent>
         </motion.div>
       </motion.div>
+      {/* Full Menu Button */}
+      <AnimatedButton variant="ripple" size="lg" className="w-fit" asChild>
+        <Link href={`/menu?category=${active}`}>View Full Menu</Link>
+      </AnimatedButton>
     </div>
   );
 }

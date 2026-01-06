@@ -33,6 +33,8 @@ const animatedButtonVariants = cva(
         // Ripple effect
         ripple:
           "bg-primary text-white shadow-lg hover:shadow-xl relative overflow-hidden hover:scale-105 before:absolute before:top-1/2 before:left-1/2 before:w-0 before:h-0 before:bg-white/20 before:rounded-full before:transition-all before:duration-500 hover:before:w-[300px] hover:before:h-[300px] hover:before:-translate-x-1/2 hover:before:-translate-y-1/2",
+        rippleYellow:
+          "bg-secondary text-black shadow-lg hover:shadow-xl relative overflow-hidden hover:scale-105 before:absolute before:top-1/2 before:left-1/2 before:w-0 before:h-0 before:bg-white/20 before:rounded-full before:transition-all before:duration-500 hover:before:w-[300px] hover:before:h-[300px] hover:before:-translate-x-1/2 hover:before:-translate-y-1/2",
 
         // Gradient shift
         gradientShift:
