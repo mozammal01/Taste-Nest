@@ -4,7 +4,7 @@ import FullMenuCategories from "./fullMenuCategories";
 
 export default function Menu() {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto my-32">
       <div className="text-center my-12">
         <SubTitle title="Menu" />
       </div>

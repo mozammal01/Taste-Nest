@@ -9,12 +9,14 @@ import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatedButton } from "../ui/animated-button";
 import { motion, useInView } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 export default function Navigation() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [active, setActive] = useState("home");
+  const pathname = usePathname();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -25,12 +27,12 @@ export default function Navigation() {
   };
 
   const navItems = [
-    { id: "home", label: "Home", href: "#home" },
-    { id: "about", label: "About", href: "#about" },
-    { id: "menu", label: "Shop", href: "#menu" },
-    { id: "blogs", label: "Blogs", href: "#blogs" },
-    { id: "pages", label: "Pages", href: "#pages" },
-    { id: "contact", label: "Contact Us", href: "#contact" },
+    { id: "home", label: "Home", href: "/" },
+    { id: "about", label: "About", href: "about" },
+    { id: "menu", label: "Shop", href: "menu" },
+    { id: "blogs", label: "Blogs", href: "blogs" },
+    { id: "pages", label: "Pages", href: "pages" },
+    { id: "contact", label: "Contact Us", href: "contact" },
   ];
 
   return (
@@ -50,7 +52,7 @@ export default function Navigation() {
             {navItems.map((item) => (
               <Link
                 key={item.label}
-                href={item.href}
+                href={`/${pathname === "/" ? `#${item.href}` : "/"}`}
                 onClick={() => handleActive(item.id)}
                 className={cn(
                   "font-semibold hover:text-primary transition-colors",

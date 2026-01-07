@@ -1,9 +1,13 @@
+import Navigation from "@/components/home/navigation";
 import Menu from "@/components/menu";
 
 export default function MenuPage() {
   return (
-    <div>
-      <Menu />
-    </div>
+    <>
+      <Navigation />
+      <div>
+        <Menu />
+      </div>
+    </>
   );
 }

@@ -3,28 +3,35 @@ import BurgerIcon from "../icons/BurgerIcon";
 import CoffeeIcon from "../icons/CoffeeIcon";
 import DessertIcon from "../icons/DessertIcon";
 import SteakIcon from "../icons/SteakIcon";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import mask from "@/../public/categories/mask.png";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+
+const categories = [
+  { id: "all", label: "All", icon: DessertIcon },
+  { id: "dessert", label: "Dessert", icon: DessertIcon },
+  { id: "steak", label: "Steak", icon: SteakIcon },
+  { id: "coffee", label: "Coffee", icon: CoffeeIcon },
+  { id: "burger", label: "Burger", icon: BurgerIcon },
+];
 
 export default function FullMenuCategories() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [active, setActive] = useState("all");
+  const params = useSearchParams();
   const router = useRouter();
-  const categories = [
-    { id: "all", label: "All", icon: DessertIcon },
-    { id: "dessert", label: "Dessert", icon: DessertIcon },
-    { id: "steak", label: "Steak", icon: SteakIcon },
-    { id: "coffee", label: "Coffee", icon: CoffeeIcon },
-    { id: "burger", label: "Burger", icon: BurgerIcon },
-  ];
+
+  useEffect(() => {
+    if (params.get("category") !== null) {
+      setActive(params.get("category") as string);
+    }
+  }, [params]);
   return (
     <div className="flex flex-col md:flex-row gap-4">
-      {/* Category Tabs */}
       {categories.map((cat) => {
         return (
           <motion.div

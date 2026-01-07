@@ -3,6 +3,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Lens } from "@/components/ui/lens";
 import Image from "next/image";
 import { AnimatedButton } from "../ui/animated-button";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 interface FoodMenuCardProps {
   item: {
@@ -12,28 +14,56 @@ interface FoodMenuCardProps {
     category: string;
     price: number;
     image: string;
+    discount?: string;
+    freeDelivery?: boolean;
   };
 }
 
 export function FoodMenuCard({ item }: FoodMenuCardProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
   return (
-    <Card className="relative shadow-none">
-      <CardHeader>
-        <Lens zoomFactor={2} lensSize={150} isStatic={false} ariaLabel="Zoom Area">
-          <div className="w-full h-[300px] overflow-hidden rounded-t-2xl relative">
-            <Image src={item.image} alt={item.name} fill className="object-cover" />
-          </div>
-        </Lens>
-      </CardHeader>
-      <CardContent>
-        <CardTitle className="text-2xl">{item.name}</CardTitle>
-        <CardDescription>{item.content}</CardDescription>
-      </CardContent>
-      <CardFooter className="flex justify-end items-center gap-4">
-          <AnimatedButton variant="ripple" size="lg">Order Now</AnimatedButton>
-          {/* <AnimatedButton variant="pulse" size="lg">Add to Cart</AnimatedButton> */}
-          <AnimatedButton variant="rippleYellow" size="lg">Add to Cart</AnimatedButton>
-      </CardFooter>
-    </Card>
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 100 }}
+      animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 100 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+    >
+      <Card>
+        <CardHeader>
+          <Lens zoomFactor={2} lensSize={150} isStatic={false} ariaLabel="Zoom Area">
+            <div className="w-full h-[300px] overflow-hidden rounded-t-2xl relative">
+              <Image src={item.image} alt={item.name} fill className="object-cover" />
+              <div className="absolute top-2 left-1 w-full h-full flex justify-start items-start gap-2">
+                {
+                  item.discount && (
+                    <div className="bg-primary text-white w-fit px-2 rounded-full">{item.discount}</div>
+                  )
+                }
+                {
+                  item.freeDelivery && (
+                    <div className="bg-primary text-white w-fit px-2 rounded-full">
+                      {item.freeDelivery ? "Free Delivery" : ""}
+                    </div>
+                  )
+                }
+              </div>
+            </div>
+          </Lens>
+        </CardHeader>
+        <CardContent>
+          <CardTitle className="text-2xl">{item.name}</CardTitle>
+          <CardDescription>{item.content}</CardDescription>
+        </CardContent>
+        <CardFooter className="flex justify-end items-center gap-4">
+          <AnimatedButton variant="ripple" size="lg">
+            Order Now
+          </AnimatedButton>
+          <AnimatedButton variant="rippleYellow" size="lg">
+            Add to Cart
+          </AnimatedButton>
+        </CardFooter>
+      </Card>
+    </motion.div>
   );
 }
