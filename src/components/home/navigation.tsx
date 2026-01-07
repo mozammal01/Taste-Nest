@@ -69,9 +69,9 @@ export default function Navigation() {
               <Image src={navIcon} alt="Shopping Cart" width={20} height={20} />
               <span className="text-white font-bold bg-primary rounded-full px-1.5 py-0.5 text-xs absolute -top-2 -right-2">0</span>
             </div>
-            <Link href="#contact" className="font-semibold hover:text-primary transition-colors">
+            <Link href="/signup" className="font-semibold hover:text-primary transition-colors">
               <AnimatedButton variant="gradientShift" size="lg" className="hidden lg:flex cursor-pointer">
-                Contact Us
+                Sign Up
               </AnimatedButton>
             </Link>
           </div>
@@ -138,7 +138,7 @@ export default function Navigation() {
 
             <div className="px-4 pt-4 border-t border-gray-200">
               <Button variant="orange" size="lg" className="w-full">
-                Contact Us
+                <Link href="/signup">Sign Up</Link>
               </Button>
             </div>
           </div>
