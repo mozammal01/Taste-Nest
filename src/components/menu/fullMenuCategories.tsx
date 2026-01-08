@@ -3,7 +3,7 @@ import BurgerIcon from "../icons/BurgerIcon";
 import CoffeeIcon from "../icons/CoffeeIcon";
 import DessertIcon from "../icons/DessertIcon";
 import SteakIcon from "../icons/SteakIcon";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -21,15 +21,12 @@ const categories = [
 export default function FullMenuCategories() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  const [active, setActive] = useState("all");
   const params = useSearchParams();
   const router = useRouter();
 
-  useEffect(() => {
-    if (params.get("category") !== null) {
-      setActive(params.get("category") as string);
-    }
-  }, [params]);
+  // Initialize active state from URL params
+  const categoryFromUrl = params.get("category");
+  const [active, setActive] = useState(categoryFromUrl ?? "all");
   return (
     <div className="flex flex-col md:flex-row gap-4">
       {categories.map((cat) => {
