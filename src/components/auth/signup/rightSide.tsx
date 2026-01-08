@@ -7,6 +7,9 @@ import { useRouter } from "next/navigation";
 import { motion, useInView } from "framer-motion";
 import { signIn } from "next-auth/react";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import logo from "@/../public/logo/logo.png";
 import GoogleIcon from "@/components/icons/GoogleIcon";
@@ -20,11 +23,13 @@ export default function SignupRightSide() {
     fullName: "",
     email: "",
     phone: "",
+    role: "user",
     password: "",
     confirmPassword: "",
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -33,12 +38,23 @@ export default function SignupRightSide() {
     setError(""); // Clear error when user types
   };
 
+  const handleRoleChange = (value: string) => {
+    setFormData({ ...formData, role: value });
+    setError("");
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setIsLoading(true);
 
     // Client-side validation
+    if (!termsAccepted) {
+      setError("You must accept the Terms of Service and Privacy Policy");
+      setIsLoading(false);
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match");
       setIsLoading(false);
@@ -151,7 +167,6 @@ export default function SignupRightSide() {
             onClick={handleGitHubSignUp}
             className="flex-1 flex items-center justify-center gap-2 py-3 px-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all duration-300 hover:border-primary/50 hover:shadow-md"
           >
-            
             <GithubIcon />
             <span className="text-sm font-medium text-gray-700">GitHub</span>
           </button>
@@ -171,9 +186,11 @@ export default function SignupRightSide() {
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Full Name */}
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Full Name</label>
+            <Label htmlFor="fullName" className="text-gray-700">
+              Full Name
+            </Label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
                 <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
@@ -184,6 +201,7 @@ export default function SignupRightSide() {
                 </svg>
               </div>
               <Input
+                id="fullName"
                 type="text"
                 name="fullName"
                 placeholder="Enter your full name"
@@ -197,9 +215,11 @@ export default function SignupRightSide() {
 
           {/* Email */}
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Email Address</label>
+            <Label htmlFor="email" className="text-gray-700">
+              Email Address
+            </Label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
                 <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
@@ -210,6 +230,7 @@ export default function SignupRightSide() {
                 </svg>
               </div>
               <Input
+                id="email"
                 type="email"
                 name="email"
                 placeholder="Enter your email"
@@ -221,11 +242,28 @@ export default function SignupRightSide() {
             </div>
           </div>
 
+          {/* Role */}
+          <div className="space-y-2">
+            <Label htmlFor="role" className="text-gray-700">
+              Role
+            </Label>
+            <Select value={formData.role} onValueChange={handleRoleChange}>
+              <SelectTrigger id="role" className="w-full h-12 border-gray-300 focus:border-primary focus:ring-primary/20">
+                <SelectValue placeholder="Select your role" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="user">User</SelectItem>
+                <SelectItem value="admin">Admin</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
           {/* Phone */}
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Phone Number</label>
+            <Label htmlFor="phone" className="text-gray-700">
+              Phone Number
+            </Label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
                 <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
@@ -236,6 +274,7 @@ export default function SignupRightSide() {
                 </svg>
               </div>
               <Input
+                id="phone"
                 type="tel"
                 name="phone"
                 placeholder="Enter your phone number"
@@ -248,9 +287,11 @@ export default function SignupRightSide() {
 
           {/* Password */}
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Password</label>
+            <Label htmlFor="password" className="text-gray-700">
+              Password
+            </Label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
                 <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
@@ -261,6 +302,7 @@ export default function SignupRightSide() {
                 </svg>
               </div>
               <Input
+                id="password"
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Create a password"
@@ -272,7 +314,7 @@ export default function SignupRightSide() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                className="absolute inset-y-0 right-0 pr-3 flex items-center z-10"
               >
                 {showPassword ? (
                   <svg className="h-5 w-5 text-gray-400 hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -300,9 +342,11 @@ export default function SignupRightSide() {
 
           {/* Confirm Password */}
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Confirm Password</label>
+            <Label htmlFor="confirmPassword" className="text-gray-700">
+              Confirm Password
+            </Label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
                 <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
@@ -313,6 +357,7 @@ export default function SignupRightSide() {
                 </svg>
               </div>
               <Input
+                id="confirmPassword"
                 type={showConfirmPassword ? "text" : "password"}
                 name="confirmPassword"
                 placeholder="Confirm your password"
@@ -324,7 +369,7 @@ export default function SignupRightSide() {
               <button
                 type="button"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                className="absolute inset-y-0 right-0 pr-3 flex items-center z-10"
               >
                 {showConfirmPassword ? (
                   <svg className="h-5 w-5 text-gray-400 hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -351,23 +396,23 @@ export default function SignupRightSide() {
           </div>
 
           {/* Terms */}
-          <div className="flex items-start gap-2">
-            <input
-              type="checkbox"
+          <div className="flex items-start gap-3">
+            <Checkbox
               id="terms"
-              className="mt-1 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary/20"
-              required
+              checked={termsAccepted}
+              onCheckedChange={(checked) => setTermsAccepted(checked === true)}
+              className="mt-0.5 border-gray-300 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
             />
-            <label htmlFor="terms" className="text-sm text-gray-600">
+            <Label htmlFor="terms" className="text-sm text-gray-600 font-normal cursor-pointer leading-relaxed">
               I agree to the{" "}
-              <Link href="/terms" className="text-primary hover:underline">
+              <Link href="/terms" className="text-primary hover:underline font-medium">
                 Terms of Service
               </Link>{" "}
               and{" "}
-              <Link href="/privacy" className="text-primary hover:underline">
+              <Link href="/privacy" className="text-primary hover:underline font-medium">
                 Privacy Policy
               </Link>
-            </label>
+            </Label>
           </div>
 
           {/* Submit Button */}

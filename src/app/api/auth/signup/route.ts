@@ -5,7 +5,7 @@ import prisma from "@/lib/prisma";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { fullName, email, phone, password, confirmPassword } = body;
+    const { fullName, email, phone, role, password, confirmPassword } = body;
 
     // Validation
     if (!fullName || !email || !password || !confirmPassword) {
@@ -38,17 +38,23 @@ export async function POST(request: Request) {
     // Hash the password with bcrypt (12 rounds)
     const hashedPassword = await bcrypt.hash(password, 12);
 
+    // Validate role (only allow 'user' or 'admin')
+    const validRoles = ["user", "admin"];
+    const userRole = validRoles.includes(role) ? role : "user";
+
     // Create new user in database
-    const newUser = await prisma.user.create({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const newUser = await (prisma.user.create as any)({
       data: {
         name: fullName,
         email: email.toLowerCase(),
         password: hashedPassword,
         phone: phone || null,
+        role: userRole,
       },
     });
 
-    console.log("✅ User registered in database:", { id: newUser.id, email: newUser.email, name: newUser.name });
+    console.log("✅ User registered in database:", { id: newUser.id, email: newUser.email, name: newUser.name, role: newUser.role });
 
     return NextResponse.json(
       {
@@ -57,12 +63,15 @@ export async function POST(request: Request) {
           id: newUser.id,
           email: newUser.email,
           name: newUser.name,
+          role: newUser.role,
         },
       },
       { status: 201 }
     );
   } catch (error) {
     console.error("Signup error:", error);
-    return NextResponse.json({ error: "Something went wrong. Please try again." }, { status: 500 });
+    // Return more detailed error for debugging
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    return NextResponse.json({ error: `Something went wrong: ${errorMessage}` }, { status: 500 });
   }
 }

@@ -1,16 +1,25 @@
 import { getCurrentUser } from "@/lib/auth";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default async function DashboardPage() {
   const user = await getCurrentUser();
+
+  // Redirect admins to admin dashboard
+  if (user?.role === "admin") {
+    redirect("/admin");
+  }
 
   return (
     <div className="min-h-screen bg-linear-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Welcome back, {user?.name || "Guest"}! 👋</h1>
-          <p className="text-gray-600 mt-2">Here&apos;s what&apos;s happening with your TasteNest account.</p>
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Welcome back, {user?.name || "Guest"}! 👋</h1>
+            <p className="text-gray-600 mt-2">Here&apos;s what&apos;s happening with your TasteNest account.</p>
+          </div>
+          <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium capitalize">{user?.role || "user"}</span>
         </div>
 
         {/* Stats Grid */}
@@ -128,6 +137,10 @@ export default async function DashboardPage() {
             <div className="flex items-center gap-3">
               <span className="text-gray-500 w-24">Email:</span>
               <span className="font-medium text-gray-900">{user?.email}</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="text-gray-500 w-24">Role:</span>
+              <span className="font-medium text-gray-900 capitalize">{user?.role || "user"}</span>
             </div>
             <div className="flex items-center gap-3">
               <span className="text-gray-500 w-24">Member ID:</span>

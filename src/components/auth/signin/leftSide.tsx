@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import { motion, useInView } from "framer-motion";
 import { signIn } from "next-auth/react";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import logo from "@/../public/logo/logo.png";
 import GithubIcon from "@/components/icons/GithubIcon";
@@ -138,9 +140,11 @@ export default function SigninLeftSide() {
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Email */}
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Email Address</label>
+            <Label htmlFor="email" className="text-gray-700">
+              Email Address
+            </Label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
                 <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
@@ -151,6 +155,7 @@ export default function SigninLeftSide() {
                 </svg>
               </div>
               <Input
+                id="email"
                 type="email"
                 name="email"
                 placeholder="Enter your email"
@@ -164,14 +169,16 @@ export default function SigninLeftSide() {
 
           {/* Password */}
           <div className="space-y-2">
-            <div className="flex justify-between">
-              <label className="text-sm font-medium text-gray-700">Password</label>
+            <div className="flex justify-between items-center">
+              <Label htmlFor="password" className="text-gray-700">
+                Password
+              </Label>
               <Link href="/forgot-password" className="text-sm text-primary hover:underline">
                 Forgot Password?
               </Link>
             </div>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
                 <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
@@ -182,6 +189,7 @@ export default function SigninLeftSide() {
                 </svg>
               </div>
               <Input
+                id="password"
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Enter your password"
@@ -193,7 +201,7 @@ export default function SigninLeftSide() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                className="absolute inset-y-0 right-0 pr-3 flex items-center z-10"
               >
                 {showPassword ? (
                   <svg
@@ -231,17 +239,16 @@ export default function SigninLeftSide() {
 
           {/* Remember Me */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
+            <div className="flex items-center gap-3">
+              <Checkbox
                 id="remember"
                 checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-                className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary/20"
+                onCheckedChange={(checked) => setRememberMe(checked === true)}
+                className="border-gray-300 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
               />
-              <label htmlFor="remember" className="text-sm text-gray-600">
+              <Label htmlFor="remember" className="text-sm text-gray-600 font-normal cursor-pointer">
                 Remember me for 30 days
-              </label>
+              </Label>
             </div>
           </div>
 
