@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto, Roboto_Mono } from "next/font/google";
 import "./globals.css";
+import SessionProvider from "@/components/providers/SessionProvider";
 
 const roboto = Roboto({
   variable: "--font-roboto-sans",
@@ -24,10 +25,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${roboto.variable} ${robotoMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${roboto.variable} ${robotoMono.variable} antialiased`}>
+        <SessionProvider>{children}</SessionProvider>
       </body>
     </html>
   );

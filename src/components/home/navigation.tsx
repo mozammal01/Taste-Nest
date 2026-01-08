@@ -3,13 +3,12 @@
 import logo from "../../../public/logo/logo.png";
 import navIcon from "../../../public/icons/navIcon.png";
 import Image from "next/image";
-import { Button } from "../ui/button";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { AnimatedButton } from "../ui/animated-button";
 import { motion, useInView } from "framer-motion";
 import { usePathname } from "next/navigation";
+import UserMenu from "../auth/UserMenu";
 
 export default function Navigation() {
   const ref = useRef(null);
@@ -69,11 +68,8 @@ export default function Navigation() {
               <Image src={navIcon} alt="Shopping Cart" width={20} height={20} />
               <span className="text-white font-bold bg-primary rounded-full px-1.5 py-0.5 text-xs absolute -top-2 -right-2">0</span>
             </div>
-            <Link href="/signup" className="font-semibold hover:text-primary transition-colors">
-              <AnimatedButton variant="gradientShift" size="lg" className="hidden lg:flex cursor-pointer">
-                Sign Up
-              </AnimatedButton>
-            </Link>
+            {/* User Menu - Shows Sign In/Up when logged out, User dropdown when logged in */}
+            <UserMenu />
           </div>
         </div>
 
@@ -136,10 +132,8 @@ export default function Navigation() {
               ))}
             </div>
 
-            <div className="px-4 pt-4 border-t border-gray-200">
-              <Button variant="orange" size="lg" className="w-full">
-                <Link href="/signup">Sign Up</Link>
-              </Button>
+            <div className="pt-4 border-t border-gray-200">
+              <UserMenu />
             </div>
           </div>
         </div>
