@@ -17,11 +17,13 @@ interface FoodMenuCardProps {
     discount?: string;
     freeDelivery?: boolean;
   };
+  userRole?: string;
 }
 
-export function FoodMenuCard({ item }: FoodMenuCardProps) {
+export function FoodMenuCard({ item, userRole }: FoodMenuCardProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+
   return (
     <motion.div
       ref={ref}
@@ -35,18 +37,10 @@ export function FoodMenuCard({ item }: FoodMenuCardProps) {
             <div className="w-full h-[300px] overflow-hidden rounded-t-2xl relative">
               <Image src={item.image} alt={item.name} fill className="object-cover" />
               <div className="absolute top-2 left-1 w-full h-full flex justify-start items-start gap-2">
-                {
-                  item.discount && (
-                    <div className="bg-primary text-white w-fit px-2 rounded-full">{item.discount}</div>
-                  )
-                }
-                {
-                  item.freeDelivery && (
-                    <div className="bg-primary text-white w-fit px-2 rounded-full">
-                      {item.freeDelivery ? "Free Delivery" : ""}
-                    </div>
-                  )
-                }
+                {item.discount && <div className="bg-primary text-white w-fit px-2 rounded-full">{item.discount}</div>}
+                {item.freeDelivery && (
+                  <div className="bg-primary text-white w-fit px-2 rounded-full">{item.freeDelivery ? "Free Delivery" : ""}</div>
+                )}
               </div>
             </div>
           </Lens>
@@ -56,12 +50,25 @@ export function FoodMenuCard({ item }: FoodMenuCardProps) {
           <CardDescription>{item.content}</CardDescription>
         </CardContent>
         <CardFooter className="flex justify-end items-center gap-4">
-          <AnimatedButton variant="ripple" size="lg">
-            Order Now
-          </AnimatedButton>
-          <AnimatedButton variant="rippleYellow" size="lg">
-            Add to Cart
-          </AnimatedButton>
+          {userRole === "admin" ? (
+            <>
+              <AnimatedButton variant="ripple" size="lg">
+                Delete Item
+              </AnimatedButton>
+              <AnimatedButton variant="rippleYellow" size="lg">
+                Edit Item
+              </AnimatedButton>
+            </>
+          ) : (
+            <>
+              <AnimatedButton variant="ripple" size="lg">
+                Order Now
+              </AnimatedButton>
+              <AnimatedButton variant="rippleYellow" size="lg">
+                Add to Cart
+              </AnimatedButton>
+            </>
+          )}
         </CardFooter>
       </Card>
     </motion.div>

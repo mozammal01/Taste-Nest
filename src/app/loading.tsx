@@ -1,0 +1,13 @@
+import { Loading } from "@/components/ui/loading";
+
+export default function RootLoading() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-white">
+      <div className="text-center">
+        <Loading variant="food" size="xl" />
+        <h2 className="mt-6 text-2xl font-bold text-gray-900">TasteNest</h2>
+        <p className="mt-2 text-gray-500">Preparing delicious experiences...</p>
+      </div>
+    </div>
+  );
+}
