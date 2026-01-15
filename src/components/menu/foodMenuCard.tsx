@@ -5,6 +5,7 @@ import Image from "next/image";
 import { AnimatedButton } from "../ui/animated-button";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useRouter } from "next/navigation";
 
 interface FoodMenuCardProps {
   item: {
@@ -23,6 +24,23 @@ interface FoodMenuCardProps {
 export function FoodMenuCard({ item, userRole }: FoodMenuCardProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const router = useRouter();
+  
+  const handleDeleteItem = () => {
+    console.log("Delete Item");
+  };
+
+  const handleEditItem = (id: number) => {
+    router.push(`/admin/items/update-item/${id}`);
+  };
+
+  const handleOrderNow = () => {
+    console.log("Order Now");
+  };
+
+  const handleAddToCart = () => {
+    console.log("Add to Cart");
+  };
 
   return (
     <motion.div
@@ -52,19 +70,19 @@ export function FoodMenuCard({ item, userRole }: FoodMenuCardProps) {
         <CardFooter className="flex justify-end items-center gap-4">
           {userRole === "admin" ? (
             <>
-              <AnimatedButton variant="ripple" size="lg">
+              <AnimatedButton onClick={handleDeleteItem} className="cursor-pointer" variant="ripple" size="lg">
                 Delete Item
               </AnimatedButton>
-              <AnimatedButton variant="rippleYellow" size="lg">
+              <AnimatedButton onClick={() => handleEditItem(item.id)} className="cursor-pointer" variant="rippleYellow" size="lg">
                 Edit Item
               </AnimatedButton>
             </>
           ) : (
             <>
-              <AnimatedButton variant="ripple" size="lg">
+              <AnimatedButton onClick={handleOrderNow} className="cursor-pointer" variant="ripple" size="lg">
                 Order Now
               </AnimatedButton>
-              <AnimatedButton variant="rippleYellow" size="lg">
+              <AnimatedButton onClick={handleAddToCart} className="cursor-pointer" variant="rippleYellow" size="lg">
                 Add to Cart
               </AnimatedButton>
             </>
