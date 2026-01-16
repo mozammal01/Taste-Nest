@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { User, LogOut, Settings, ShoppingBag, Calendar, ChevronDown, LayoutDashboard, Heart, CreditCard, HelpCircle } from "lucide-react";
+import { LogOut, Settings, ShoppingBag, Calendar, ChevronDown, LayoutDashboard, Heart, CreditCard, HelpCircle } from "lucide-react";
 
 export default function UserMenu() {
   const { data: session, status } = useSession();
