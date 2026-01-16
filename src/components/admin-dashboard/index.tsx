@@ -25,7 +25,7 @@ export default async function AdminDashboard() {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:border-blue-200 transition-all group">
+        <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-lg hover:border-blue-200 transition-all group">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-500 text-sm">Total Users</p>
@@ -50,7 +50,7 @@ export default async function AdminDashboard() {
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:border-green-200 transition-all group">
+        <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-lg hover:border-green-200 transition-all group">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-500 text-sm">Total Orders</p>
@@ -70,7 +70,7 @@ export default async function AdminDashboard() {
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:border-yellow-200 transition-all group">
+        <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-lg hover:border-yellow-200 transition-all group">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-500 text-sm">Revenue</p>
@@ -95,7 +95,7 @@ export default async function AdminDashboard() {
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:border-purple-200 transition-all group">
+        <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-lg hover:border-purple-200 transition-all group">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-500 text-sm">Menu Items</p>

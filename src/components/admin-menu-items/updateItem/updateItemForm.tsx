@@ -107,7 +107,6 @@ export default function UpdateItemForm({ data }: { data: MenuItems }) {
                   id="name"
                   name="name"
                   value={formData.name}
-                  defaultValue={data.name}
                   onChange={handleInputChange}
                   placeholder="e.g., Grilled Ribeye Steak"
                   className="h-12 rounded-xl border-gray-200 focus:border-primary focus:ring-primary/20 transition-all"
@@ -124,7 +123,6 @@ export default function UpdateItemForm({ data }: { data: MenuItems }) {
                   id="content"
                   name="content"
                   value={formData.content}
-                  defaultValue={data.content}
                   onChange={handleInputChange}
                   placeholder="Describe your dish in a mouthwatering way..."
                   rows={4}
@@ -140,7 +138,7 @@ export default function UpdateItemForm({ data }: { data: MenuItems }) {
                   <Label className="text-gray-700 font-medium">
                     Category <span className="text-primary">*</span>
                   </Label>
-                  <Select value={formData.category} defaultValue={data.category} onValueChange={handleCategoryChange}>
+                  <Select value={formData.category} onValueChange={handleCategoryChange}>
                     <SelectTrigger className="h-12 w-full rounded-xl border-gray-200">
                       <SelectValue placeholder="Select a category" />
                     </SelectTrigger>
@@ -171,7 +169,6 @@ export default function UpdateItemForm({ data }: { data: MenuItems }) {
                       step="0.01"
                       min="0"
                       value={formData.price}
-                      defaultValue={data.price.toString()}
                       onChange={handleInputChange}
                       placeholder="0.00"
                       className="h-12 pl-8 rounded-xl border-gray-200 focus:border-primary focus:ring-primary/20 transition-all"
@@ -209,7 +206,6 @@ export default function UpdateItemForm({ data }: { data: MenuItems }) {
                   id="image"
                   name="image"
                   value={formData.image}
-                  defaultValue={data.image}
                   onChange={handleInputChange}
                   placeholder="https://images.unsplash.com/..."
                   className="h-12 rounded-xl border-gray-200 focus:border-primary focus:ring-primary/20 transition-all"
@@ -268,7 +264,6 @@ export default function UpdateItemForm({ data }: { data: MenuItems }) {
                   id="discount"
                   name="discount"
                   value={formData.discount}
-                  defaultValue={data.discount}
                   onChange={handleInputChange}
                   placeholder="e.g., 15% OFF, NEW, HOT"
                   className="h-12 rounded-xl border-gray-200 focus:border-primary focus:ring-primary/20 transition-all"
@@ -294,7 +289,7 @@ export default function UpdateItemForm({ data }: { data: MenuItems }) {
                     <p className="text-xs text-gray-500">Enable free delivery for this item</p>
                   </div>
                 </div>
-                <Checkbox checked={formData.freeDelivery} defaultValue={data.freeDelivery?.toString() || "false"} onCheckedChange={handleFreeDeliveryChange} className="w-5 h-5" />
+                <Checkbox checked={formData.freeDelivery} onCheckedChange={handleFreeDeliveryChange} className="w-5 h-5" />
               </div>
             </div>
           </div>
