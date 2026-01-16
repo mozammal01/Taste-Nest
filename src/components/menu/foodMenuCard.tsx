@@ -1,33 +1,51 @@
 "use client";
+
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Lens } from "@/components/ui/lens";
 import Image from "next/image";
 import { AnimatedButton } from "../ui/animated-button";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import type { MenuItem } from "@/types/menuItems";
+import { deleteMenuItem } from "@/lib/actions/menu";
+import { createCartItem } from "@/lib/actions/cart";
+import { User } from "next-auth";
+import { toast } from "sonner";
+import { ShoppingCart, Check, AlertCircle } from "lucide-react";
 
 interface FoodMenuCardProps {
-  item: {
-    id: number;
-    name: string;
-    content: string;
-    category: string;
-    price: number;
-    image: string;
-    discount?: string;
-    freeDelivery?: boolean;
-  };
+  item: MenuItem;
   userRole?: string;
+  user?: User | null;
 }
 
-export function FoodMenuCard({ item, userRole }: FoodMenuCardProps) {
+export function FoodMenuCard({ item, userRole, user }: FoodMenuCardProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const router = useRouter();
-  
-  const handleDeleteItem = () => {
-    console.log("Delete Item");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
+
+  const handleDeleteItem = async () => {
+    if (!confirm(`Are you sure you want to delete "${item.name}"?`)) {
+      return;
+    }
+
+    setIsDeleting(true);
+    try {
+      const result = await deleteMenuItem(item.id);
+      if (result.success) {
+        toast.success("Item deleted successfully");
+        router.refresh();
+      } else {
+        toast.error(result.message);
+      }
+    } catch {
+      toast.error("Failed to delete item. Please try again.");
+    } finally {
+      setIsDeleting(false);
+    }
   };
 
   const handleEditItem = (id: number) => {
@@ -35,11 +53,58 @@ export function FoodMenuCard({ item, userRole }: FoodMenuCardProps) {
   };
 
   const handleOrderNow = () => {
-    console.log("Order Now");
+    if (!user) {
+      toast.error("Please sign in to place an order", {
+        action: {
+          label: "Sign In",
+          onClick: () => router.push("/signin"),
+        },
+      });
+      return;
+    }
+    router.push("/cart");
   };
 
-  const handleAddToCart = () => {
-    console.log("Add to Cart");
+  const handleAddToCart = async (id: number) => {
+    if (!user) {
+      toast.error("Please sign in to add items to cart", {
+        icon: <AlertCircle className="w-5 h-5" />,
+        action: {
+          label: "Sign In",
+          onClick: () => router.push("/signin"),
+        },
+      });
+      return;
+    }
+
+    setIsAddingToCart(true);
+    try {
+      const result = await createCartItem({
+        userId: user.id,
+        menuItemId: id,
+        quantity: 1,
+      });
+
+      if (result.success) {
+        toast.success(`${item.name} added to cart!`, {
+          icon: <Check className="w-5 h-5" />,
+          description: "View your cart to checkout",
+          action: {
+            label: "View Cart",
+            onClick: () => router.push("/cart"),
+          },
+        });
+        router.refresh();
+      } else {
+        toast.error(result.message, {
+          icon: <AlertCircle className="w-5 h-5" />,
+        });
+      }
+    } catch {
+      toast.error("Failed to add item to cart. Please try again.");
+    } finally {
+      setIsAddingToCart(false);
+    }
   };
 
   return (
@@ -70,8 +135,8 @@ export function FoodMenuCard({ item, userRole }: FoodMenuCardProps) {
         <CardFooter className="flex justify-end items-center gap-4">
           {userRole === "admin" ? (
             <>
-              <AnimatedButton onClick={handleDeleteItem} className="cursor-pointer" variant="ripple" size="lg">
-                Delete Item
+              <AnimatedButton onClick={handleDeleteItem} className="cursor-pointer" variant="ripple" size="lg" disabled={isDeleting}>
+                {isDeleting ? "Deleting..." : "Delete Item"}
               </AnimatedButton>
               <AnimatedButton onClick={() => handleEditItem(item.id)} className="cursor-pointer" variant="rippleYellow" size="lg">
                 Edit Item
@@ -82,8 +147,24 @@ export function FoodMenuCard({ item, userRole }: FoodMenuCardProps) {
               <AnimatedButton onClick={handleOrderNow} className="cursor-pointer" variant="ripple" size="lg">
                 Order Now
               </AnimatedButton>
-              <AnimatedButton onClick={handleAddToCart} className="cursor-pointer" variant="rippleYellow" size="lg">
-                Add to Cart
+              <AnimatedButton
+                onClick={() => handleAddToCart(item.id)}
+                className="cursor-pointer"
+                variant="rippleYellow"
+                size="lg"
+                disabled={isAddingToCart}
+              >
+                {isAddingToCart ? (
+                  <span className="flex items-center gap-2">
+                    <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    Adding...
+                  </span>
+                ) : (
+                  <span className="flex items-center gap-2">
+                    <ShoppingCart className="w-4 h-4" />
+                    Add to Cart
+                  </span>
+                )}
               </AnimatedButton>
             </>
           )}

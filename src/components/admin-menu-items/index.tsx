@@ -1,6 +1,6 @@
 import { getCurrentUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import menuItems from "@/constants/menu.json";
+import { getMenuItems, getMenuCategories } from "@/lib/actions/menu";
 import { FoodMenuCard } from "../menu/foodMenuCard";
 import { Button } from "../ui/button";
 import Link from "next/link";
@@ -12,6 +12,11 @@ export default async function AdminMenuItems() {
   if (user?.role !== "admin") {
     redirect("/dashboard");
   }
+
+  // Fetch menu items and categories from database
+  const [menuItems, categories] = await Promise.all([getMenuItems(), getMenuCategories()]);
+
+  const freeDeliveryCount = menuItems.filter((item) => item.freeDelivery).length;
 
   return (
     <div className="p-8">
@@ -29,7 +34,6 @@ export default async function AdminMenuItems() {
             Add New Item
           </Link>
         </Button>
-        
       </div>
 
       {/* Stats */}
@@ -56,7 +60,7 @@ export default async function AdminMenuItems() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-500 text-sm">Free Delivery</p>
-              <p className="text-3xl font-bold text-green-600 mt-1">{menuItems.filter((item) => item.freeDelivery).length}</p>
+              <p className="text-3xl font-bold text-green-600 mt-1">{freeDeliveryCount}</p>
             </div>
             <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
               <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,7 +78,7 @@ export default async function AdminMenuItems() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-500 text-sm">Categories</p>
-              <p className="text-3xl font-bold text-blue-600 mt-1">{new Set(menuItems.map((item) => item.category)).size}</p>
+              <p className="text-3xl font-bold text-blue-600 mt-1">{categories.length}</p>
             </div>
             <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
               <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

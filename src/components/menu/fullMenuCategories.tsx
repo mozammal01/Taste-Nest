@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import mask from "@/../public/categories/mask.png";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useMenu } from "./MenuContext";
 
 const categories = [
   { id: "all", label: "All", icon: DessertIcon },
@@ -23,10 +24,20 @@ export default function FullMenuCategories() {
   const isInView = useInView(ref, { once: true });
   const params = useSearchParams();
   const router = useRouter();
+  const { startLoading } = useMenu();
 
   // Initialize active state from URL params
   const categoryFromUrl = params.get("category");
   const [active, setActive] = useState(categoryFromUrl ?? "all");
+
+  const handleCategoryChange = (categoryId: string) => {
+    if (categoryId === active) return; // Don't reload if same category
+
+    setActive(categoryId);
+    startLoading(); // Immediately show loading
+    router.push(`/menu?category=${categoryId}`);
+  };
+
   return (
     <div className="flex flex-col md:flex-row gap-4">
       {categories.map((cat) => {
@@ -40,10 +51,7 @@ export default function FullMenuCategories() {
             key={cat.id}
           >
             <motion.div
-              onClick={() => {
-                setActive(cat.id);
-                router.push(`/menu?category=${cat.id}`);
-              }}
+              onClick={() => handleCategoryChange(cat.id)}
               className={cn(
                 "hidden md:flex flex-col justify-center items-center gap-2 border shadow-sm rounded-xl cursor-pointer p-8 relative overflow-hidden",
                 "w-[190px] h-[190px]"
@@ -100,7 +108,7 @@ export default function FullMenuCategories() {
               </motion.div>
             )}
             <motion.span
-              onClick={() => setActive(cat.id)}
+              onClick={() => handleCategoryChange(cat.id)}
               className={cn(
                 "font-extrabold cursor-pointer flex items-center gap-2 md:hidden relative ",
                 active === cat.id ? "text-primary" : "text-black"

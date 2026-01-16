@@ -1,17 +1,13 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import UpdateItemForm from "./updateItemForm";
-import menuItems from "@/constants/menu.json";
-import { useParams } from "next/navigation";
-import { MenuItems } from "@/types/menuItems";
+import type { MenuItem } from "@/types/menuItems";
 
+interface UpdateMenuItemProps {
+  item: MenuItem;
+}
 
-export default function UpdateMenuItem() {
-  const params = useParams();
-  const id = params.id as string;
-  const data = menuItems.find((item) => item.id === parseInt(id)) as MenuItems;
+export default function UpdateMenuItem({ item }: UpdateMenuItemProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
       {/* Decorative Background Elements */}
@@ -58,7 +54,7 @@ export default function UpdateMenuItem() {
           </div>
         </div>
 
-        <UpdateItemForm data={data} />
+        <UpdateItemForm data={item} />
       </div>
     </div>
   );

@@ -1,17 +1,110 @@
 "use client";
-import menu from "@/constants/menu.json";
+
 import { FoodMenuCard } from "./foodMenuCard";
 import { useSearchParams } from "next/navigation";
+import { useMemo, useEffect } from "react";
+import type { MenuItem } from "@/types/menuItems";
+import { motion } from "framer-motion";
+import { useMenu } from "./MenuContext";
+import { User } from "next-auth";
 
-export default function FoodMenu() {
+interface FoodMenuProps {
+  items: MenuItem[];
+  user: User | null;
+}
+
+// Skeleton loader component for menu cards
+function MenuCardSkeleton() {
+  return (
+    <div className="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100">
+      {/* Image skeleton */}
+      <div className="w-full h-[300px] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-shimmer bg-[length:200%_100%]" />
+      {/* Content skeleton */}
+      <div className="p-4 space-y-3">
+        <div className="h-6 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-shimmer bg-[length:200%_100%] rounded w-3/4" />
+        <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-shimmer bg-[length:200%_100%] rounded w-full" />
+        <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-shimmer bg-[length:200%_100%] rounded w-2/3" />
+        <div className="flex justify-end gap-2 pt-2">
+          <div className="h-10 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-shimmer bg-[length:200%_100%] rounded-lg w-24" />
+          <div className="h-10 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-shimmer bg-[length:200%_100%] rounded-lg w-24" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Loading skeleton grid component
+export function MenuLoadingSkeleton() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full my-20">
+      {[...Array(6)].map((_, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.2, delay: index * 0.05 }}
+        >
+          <MenuCardSkeleton />
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+export default function FoodMenu({ items, user }: FoodMenuProps) {
   const params = useSearchParams();
   const category = params.get("category");
-  const filteredMenu = menu.filter((item) => item.category === category);
+  const { isLoading, stopLoading } = useMenu();
+
+  // Stop loading after URL has updated and a short delay for animation
+  useEffect(() => {
+    if (isLoading) {
+      const timer = setTimeout(() => {
+        stopLoading();
+      }, 400);
+      return () => clearTimeout(timer);
+    }
+  }, [category, isLoading, stopLoading]);
+
+  // Filter items based on category
+  const displayedItems = useMemo(() => {
+    if (!category || category === "all") {
+      return items;
+    }
+    return items.filter((item) => item.category === category);
+  }, [items, category]);
+
+  // Show skeleton when loading
+  if (isLoading) {
+    return <MenuLoadingSkeleton />;
+  }
+
+  if (displayedItems.length === 0) {
+    return (
+      <div className="flex justify-center items-center h-64 my-20">
+        <p className="text-gray-500 text-lg">No menu items found for this category.</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full my-20 ">
-      {filteredMenu.length > 0
-        ? filteredMenu.map((item) => <FoodMenuCard key={item.id} item={item} />)
-        : menu.map((item) => <FoodMenuCard key={item.id} item={item} />)}
-    </div>
+    <motion.div
+      key={category || "all"}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full my-20"
+    >
+      {displayedItems.map((item, index) => (
+        <motion.div
+          key={item.id}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: index * 0.05 }}
+        >
+          <FoodMenuCard item={item} user={user} />
+        </motion.div>
+      ))}
+    </motion.div>
   );
 }

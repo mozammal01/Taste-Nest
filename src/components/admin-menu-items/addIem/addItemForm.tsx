@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useCallback } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -5,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { createMenuItem } from "@/lib/actions/menu";
 
 interface FormData {
   name: string;
@@ -28,6 +32,7 @@ const categories = [
 ];
 
 export default function AddItemForm() {
+  const router = useRouter();
   const [formData, setFormData] = useState<FormData>({
     name: "",
     content: "",
@@ -40,6 +45,8 @@ export default function AddItemForm() {
 
   const [imageError, setImageError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
 
   const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -47,10 +54,12 @@ export default function AddItemForm() {
     if (name === "image") {
       setImageError(false);
     }
+    setError(null);
   }, []);
 
   const handleCategoryChange = useCallback((value: string) => {
     setFormData((prev) => ({ ...prev, category: value }));
+    setError(null);
   }, []);
 
   const handleFreeDeliveryChange = useCallback((checked: boolean) => {
@@ -60,13 +69,44 @@ export default function AddItemForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
+    setSuccess(null);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const result = await createMenuItem({
+        name: formData.name,
+        content: formData.content,
+        category: formData.category,
+        price: parseFloat(formData.price),
+        image: formData.image,
+        discount: formData.discount || undefined,
+        freeDelivery: formData.freeDelivery,
+      });
 
-    console.log("Form submitted:", formData);
-    setIsSubmitting(false);
-    // Here you would typically make an API call to save the item
+      if (result.success) {
+        setSuccess(result.message);
+        // Reset form after successful submission
+        setFormData({
+          name: "",
+          content: "",
+          category: "",
+          price: "",
+          image: "",
+          discount: "",
+          freeDelivery: false,
+        });
+        // Redirect to menu items page after a short delay
+        setTimeout(() => {
+          router.push("/admin/items");
+        }, 1500);
+      } else {
+        setError(result.message);
+      }
+    } catch {
+      setError("An unexpected error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const isFormValid = formData.name && formData.content && formData.category && formData.price && formData.image;
@@ -291,6 +331,10 @@ export default function AddItemForm() {
             </div>
           </div>
 
+          {/* Feedback Messages */}
+          {error && <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">{error}</div>}
+          {success && <div className="p-4 bg-green-50 border border-green-200 rounded-xl text-green-700 text-sm">{success}</div>}
+
           {/* Submit Button */}
           <div className="flex items-center gap-4 pt-2">
             <Button
@@ -324,7 +368,7 @@ export default function AddItemForm() {
               type="button"
               variant="outline"
               className="h-12 px-8 rounded-xl border-gray-200 hover:border-gray-300"
-              onClick={() =>
+              onClick={() => {
                 setFormData({
                   name: "",
                   content: "",
@@ -333,8 +377,10 @@ export default function AddItemForm() {
                   image: "",
                   discount: "",
                   freeDelivery: false,
-                })
-              }
+                });
+                setError(null);
+                setSuccess(null);
+              }}
             >
               Reset Form
             </Button>

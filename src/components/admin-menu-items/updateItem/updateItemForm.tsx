@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useCallback } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -6,8 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Image from "next/image";
-import { MenuItems } from "@/types/menuItems";
-// import { MenuItems } from "@/types/menuItems";
+import { useRouter } from "next/navigation";
+import type { MenuItem } from "@/types/menuItems";
+import { updateMenuItem } from "@/lib/actions/menu";
 
 interface FormData {
   name: string;
@@ -30,7 +32,8 @@ const categories = [
   { value: "drinks", label: "Drinks", icon: "🥤" },
 ];
 
-export default function UpdateItemForm({ data }: { data: MenuItems }) {
+export default function UpdateItemForm({ data }: { data: MenuItem }) {
+  const router = useRouter();
   const [formData, setFormData] = useState<FormData>({
     name: data.name,
     content: data.content,
@@ -38,11 +41,13 @@ export default function UpdateItemForm({ data }: { data: MenuItems }) {
     price: data.price.toString(),
     image: data.image,
     discount: data.discount || "",
-    freeDelivery: data.freeDelivery || false,
+    freeDelivery: data.freeDelivery,
   });
 
   const [imageError, setImageError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
 
   const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -50,10 +55,12 @@ export default function UpdateItemForm({ data }: { data: MenuItems }) {
     if (name === "image") {
       setImageError(false);
     }
+    setError(null);
   }, []);
 
   const handleCategoryChange = useCallback((value: string) => {
     setFormData((prev) => ({ ...prev, category: value }));
+    setError(null);
   }, []);
 
   const handleFreeDeliveryChange = useCallback((checked: boolean) => {
@@ -63,13 +70,34 @@ export default function UpdateItemForm({ data }: { data: MenuItems }) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
+    setSuccess(null);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const result = await updateMenuItem(data.id, {
+        name: formData.name,
+        content: formData.content,
+        category: formData.category,
+        price: parseFloat(formData.price),
+        image: formData.image,
+        discount: formData.discount || undefined,
+        freeDelivery: formData.freeDelivery,
+      });
 
-    console.log("Form submitted:", formData);
-    setIsSubmitting(false);
-    // Here you would typically make an API call to save the item
+      if (result.success) {
+        setSuccess(result.message);
+        // Redirect to menu items page after a short delay
+        setTimeout(() => {
+          router.push("/admin/items");
+        }, 1500);
+      } else {
+        setError(result.message);
+      }
+    } catch {
+      setError("An unexpected error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const isFormValid = formData.name && formData.content && formData.category && formData.price && formData.image;
@@ -294,6 +322,10 @@ export default function UpdateItemForm({ data }: { data: MenuItems }) {
             </div>
           </div>
 
+          {/* Feedback Messages */}
+          {error && <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">{error}</div>}
+          {success && <div className="p-4 bg-green-50 border border-green-200 rounded-xl text-green-700 text-sm">{success}</div>}
+
           {/* Submit Button */}
           <div className="flex items-center gap-4 pt-2">
             <Button
@@ -316,7 +348,7 @@ export default function UpdateItemForm({ data }: { data: MenuItems }) {
               ) : (
                 <>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   Update Menu Item
                 </>
@@ -327,7 +359,7 @@ export default function UpdateItemForm({ data }: { data: MenuItems }) {
               type="button"
               variant="outline"
               className="h-12 px-8 rounded-xl border-gray-200 hover:border-gray-300"
-              onClick={() =>
+              onClick={() => {
                 setFormData({
                   name: data.name,
                   content: data.content,
@@ -335,9 +367,11 @@ export default function UpdateItemForm({ data }: { data: MenuItems }) {
                   price: data.price.toString(),
                   image: data.image,
                   discount: data.discount || "",
-                  freeDelivery: data.freeDelivery || false,
-                })
-              }
+                  freeDelivery: data.freeDelivery,
+                });
+                setError(null);
+                setSuccess(null);
+              }}
             >
               Reset Form
             </Button>
